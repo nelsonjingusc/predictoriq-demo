@@ -2,7 +2,7 @@
 
 **Audience**: External reviewers, potential investors, and collaborators
 **Purpose**: Showcase the frontend UI and core features
-**Time Required**: 15-20 minutes
+**Time Required**: 10-15 minutes (demo focuses on frontend UI showcase)
 
 ---
 
@@ -10,8 +10,16 @@
 
 This demo showcases PredictorIQ's frontend interface and key features. The demo runs with:
 - ✅ Full frontend UI (Next.js)
-- ⚠️ Mock backend data for demonstration
+- ✅ Complete page structure and navigation
+- ✅ UI components and design system
+- ⚠️ **API calls will fail** (backend not included in public repo)
 - ℹ️ Full backend available upon request (private repository)
+
+**Important**: This is a **frontend-only POC**. The UI is fully functional, but API calls to `http://localhost:8000` will fail because the backend server is not included. This is expected behavior. You can still:
+- Navigate all pages
+- See the UI design and layout
+- Understand the product structure
+- Review the code architecture
 
 ---
 
@@ -20,6 +28,30 @@ This demo showcases PredictorIQ's frontend interface and key features. The demo 
 - **Node.js**: 18.0 or higher
 - **npm**: Latest version
 - **Web Browser**: Chrome, Firefox, or Safari
+
+---
+
+## Quick Verification (30 seconds)
+
+To quickly verify the demo works:
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+Then open `http://localhost:3000` in your browser. You should see:
+- ✅ Homepage with "The Morningstar for Prediction Markets" tagline
+- ✅ "View Top10" and "Join Waitlist" buttons
+- ✅ Click "View Top10" to see the recommendations page (may show error/loading state due to missing backend)
+
+**Expected Behavior**: 
+- Pages will load and display correctly
+- API calls will fail (showing error/loading states)
+- This is **normal** - the backend is not included in this public demo
+
+If you see the UI pages loading, the demo is working correctly!
 
 ---
 
@@ -44,7 +76,7 @@ The application will start on `http://localhost:3000`
 
 1. Open your browser to `http://localhost:3000`
 2. You'll see the landing page with the tagline:
-   > **"Don't trade what's popular. Trade what you know."**
+   > **"The Morningstar for Prediction Markets"**
 
 ---
 
@@ -56,68 +88,19 @@ The application will start on `http://localhost:3000`
 
 **What to observe**:
 - Clean, modern design
-- Value proposition clearly stated
-- Call-to-action buttons: "Get Started" and "View Demo"
+- Value proposition clearly stated: "The Morningstar for Prediction Markets"
+- Call-to-action buttons: "View Top10" and "Join Waitlist"
 
 **Key Message**:
 > PredictorIQ helps you find markets where YOU have an advantage, not just what's trending.
 
 ---
 
-### 2. Onboarding Flow (3 minutes)
+### 2. Top10 Recommendations (5 minutes)
 
-**URL**: `http://localhost:3000/onboarding`
+**URL**: `http://localhost:3000/top10`
 
-This is the core differentiator - personalization through user profiling.
-
-#### Step 1: Domain Interests
-
-**What to do**:
-- Select 2-3 domains you're interested in
-- Examples: Economics & Finance, Technology & AI, Crypto
-
-**What it demonstrates**:
-- Multi-select interface
-- Interest-based filtering
-
-#### Step 2: Professional Background
-
-**What to do**:
-- Select your professional background
-- Example: "Finance/Trading" or "Tech Industry"
-
-**What it demonstrates**:
-- This is the **key differentiator**
-- Finance professionals get Fed/inflation markets prioritized
-- Tech workers get AI/product launch markets first
-- Geographic advantage for local markets
-
-#### Step 3: Trading Style
-
-**What to do**:
-- Select risk tolerance: Conservative / Moderate / Aggressive
-- Select time horizon: Intraday / Short-term / Medium-term
-- Select market size preference: Micro / Medium / Large
-
-**What it demonstrates**:
-- Style-based matching
-- Risk alignment
-
-#### Step 4: Confirmation
-
-**What you'll see**:
-- Profile summary
-- Explanation of what will be personalized
-- Redirect to dashboard
-
-**Key Message**:
-> "Based on your profile, we'll show you markets where you have expertise advantage"
-
----
-
-### 3. Dashboard - Personalized Top10 (5 minutes)
-
-**URL**: `http://localhost:3000/dashboard`
+**Note**: The onboarding flow for personalization is planned for the full version. In this demo, you'll see the Top10 recommendations with mock data.
 
 This is the **core product**.
 
@@ -125,8 +108,8 @@ This is the **core product**.
 
 **Header**:
 ```
-📊 Your Personalized Top10
-Based on your expertise in Finance and Crypto
+📊 Daily Top10
+AI-ranked market opportunities across all platforms
 ```
 
 **Market Cards**:
@@ -134,111 +117,65 @@ Based on your expertise in Finance and Crypto
 Each card shows:
 ```
 ┌─────────────────────────────────────────┐
-│ #1 | AI Score: 87/100                   │
+│ #1 | AI Score: 87.0                     │
 ├─────────────────────────────────────────┤
 │ Will Fed raise interest rates in March? │
 │                                         │
-│ 🎯 92% Match Score                      │
-│ Platform: Kalshi | Price: 60¢          │
+│ Platform: KALSHI | Category: Economics │
+│ Price: 60.0% | Volume: $50,000         │
 │                                         │
-│ 💡 Why recommended for YOU:             │
-│   • 💼 Matches your finance expertise   │
-│   • 🇺🇸 US market - local advantage     │
-│   • 📊 Medium market fits preference    │
+│ 💡 Edge: Strong fundamentals...        │
 │                                         │
-│ 📈 Rationale: Strong fundamentals...   │
+│ Recommended: [action if available]      │
+│ Confidence: 85%                        │
 │                                         │
-│ [View Details] [Add to Watchlist]      │
+│ [View Market →]                         │
 └─────────────────────────────────────────┘
 ```
 
 #### Key Features to Highlight
 
-1. **Personalization Tags**
-   - Shows WHY each market is recommended
-   - Not just AI score, but match reasons
-   - Transparency in recommendations
-
-2. **AI Score**
-   - 0-100 scoring system
+1. **AI Score**
+   - 0-100 scoring system (displayed as decimal)
    - Higher = better opportunity
-   - Combines market quality + personal fit
+   - Combines market quality analysis
 
-3. **Match Score**
-   - Separate from AI score
-   - Shows how well it matches YOUR profile
-   - Finance expert sees 90%+ on Fed markets
-
-4. **Rationale**
+2. **Edge Rationale**
    - Natural language explanation
    - Generated by AI (in full version)
-   - Explains the "edge"
+   - Explains why this market is recommended
 
-#### Demo Scenario
+3. **Market Information**
+   - Platform, category, price, volume, liquidity
+   - All key metrics in one view
+   - Direct link to trade on original platform
 
-**Scenario 1: Finance Professional**
-- Profile: Finance background + Economics interest
-- Result: Fed rate, inflation, GDP markets ranked #1-3
-- Personalization boost: +50% for finance markets
-
-**Scenario 2: Tech Worker**
-- Profile: Tech background + AI interest
-- Result: OpenAI, Google, Apple markets ranked high
-- Personalization boost: +50% for tech markets
-
-**Compare**:
-- Open two browser windows
-- Different profiles
-- Same markets rank differently
-- **This is the value prop!**
+**Note**: Personalization features (match scores, user-specific recommendations) are planned for the full version. The demo shows the general Top10 rankings with AI-powered analysis.
 
 ---
 
-### 4. Market Details (3 minutes)
+### 4. Market Information in Top10 (2 minutes)
 
-**URL**: Click any market card
+**What to Observe in Top10 Cards**:
 
-#### What to Observe
+Each market card in the Top10 shows:
+- **Rank**: Position in the daily recommendations
+- **AI Score**: 0-100 scoring system (higher = better opportunity)
+- **Market Title**: The prediction market question
+- **Platform & Category**: Which platform (Kalshi/Polymarket) and category
+- **Price**: Current market price (as percentage)
+- **Volume 24h**: Trading volume in the last 24 hours
+- **Liquidity**: Available liquidity for trading
+- **Edge Rationale**: AI-generated explanation of why this market is recommended
+- **Recommended Action**: Suggested trading action (if available)
+- **Confidence**: Confidence level in the recommendation
+- **View Market Link**: Direct link to the market on the original platform
 
-**Price Information**:
-- Current price (Yes/No)
-- Bid-Ask spread
-- Historical price chart (if available)
-
-**Market Metadata**:
-- Platform (Kalshi/Polymarket)
-- Expiry date
-- Category
-- Trading volume
-- Liquidity
-
-**Risk Metrics** (Greek-style):
-```
-Risk Analysis:
-
-Directional Exposure:  ████████░░ 0.8 (High)
-  → Market is far from 50/50, directional bet
-
-Convexity Risk:        ██████░░░░ 0.6 (Medium)
-  → Moderate sensitivity to price changes
-
-Liquidity Risk:        ███░░░░░░░ 0.3 (Low)
-  → Deep order book, easy to trade
-
-Event Time Risk:       █████████░ 0.9 (Very High)
-  → Expires in 3 days, time decay risk
-
-Total Risk Score:      ██████░░░░ 0.65
-```
-
-**Recommendations**:
-- "Consider YES position below 58¢"
-- "High time risk - short expiry"
-- "Good liquidity for quick entry/exit"
+**Note**: Detailed market pages with full risk metrics (Greek-style analytics) are planned for the full version. In this demo, the Top10 cards provide key information, and the "View Market →" link takes you to the original platform (Kalshi or Polymarket) for detailed trading.
 
 #### Key Message
 
-> We give you the same risk tools that options traders use, adapted for prediction markets.
+> The Top10 cards give you the essential information to evaluate opportunities. Full risk analytics are available in the complete version.
 
 ---
 
@@ -298,27 +235,18 @@ Total Risk Score:      ██████░░░░ 0.65
 
 ---
 
-### 6. Market Explorer (2 minutes)
+### 6. Other Demo Pages (2 minutes)
 
-**URL**: `http://localhost:3000/markets`
+**Available Pages**:
+- `/arbitrage` - Cross-platform arbitrage scanner
+- `/strategies` - Trading strategy templates
+- `/ideas` - Market creation ideas
+- `/agents` - AI agents feed
+- `/pricing` - Subscription plans
+- `/api` - API documentation
+- `/waitlist` - Early access signup
 
-#### What to Observe
-
-**Filters**:
-- Platform: Kalshi / Polymarket / All
-- Category: Politics / Economics / Sports / Crypto / All
-- Status: Active / Closed / All
-- Search: Keyword search
-
-**Market List**:
-- All 3,600+ markets (in full version)
-- Paginated view
-- Quick stats: Price, Volume, Liquidity
-- Click to view details
-
-#### Key Message
-
-> While we personalize the Top10, you can still browse all markets. Power users can explore everything.
+**Note**: The full market explorer with filters is planned for the full version. In this demo, you can explore the Top10 and other feature pages.
 
 ---
 
@@ -374,14 +302,46 @@ export async function getTop10(userProfile?: UserProfile) {
 
 ---
 
-## Limitations of Public Demo
+## Understanding This POC
 
-### What's NOT Included
+### What This Demo Shows
 
-1. **Backend Logic**:
-   - Actual ML ranking model (proprietary)
+This is a **frontend-only proof of concept** designed to demonstrate:
+
+1. **Product Vision**: Complete UI showing all planned features
+2. **User Experience**: Navigation flow, page layouts, and interactions
+3. **Technical Architecture**: 
+   - Next.js 14 app structure
+   - TypeScript SDK design
+   - Component organization
+   - API integration patterns
+
+### How It Works
+
+1. **Frontend Structure**: All pages are implemented and navigable
+2. **API Integration**: Code uses the SDK to call backend APIs
+3. **Expected Behavior**: API calls fail (backend not included), but UI still renders
+4. **Error Handling**: Pages show loading/error states gracefully
+
+### What to Focus On
+
+As a reviewer, you should evaluate:
+
+- ✅ **UI/UX Design**: Is the interface intuitive and well-designed?
+- ✅ **Product Vision**: Do the features make sense for the use case?
+- ✅ **Code Quality**: Is the frontend code well-structured?
+- ✅ **Architecture**: Is the SDK and component design scalable?
+- ✅ **Documentation**: Are the docs clear and helpful?
+
+### Limitations of Public Demo
+
+#### What's NOT Included
+
+1. **Backend Server**:
+   - API endpoints (FastAPI server)
+   - Data ingestion from Kalshi/Polymarket
+   - ML ranking models (proprietary)
    - Personalization algorithm (proprietary)
-   - Feature engineering pipeline (proprietary)
 
 2. **AI Agents**:
    - Alpha Scout (opportunity discovery)
@@ -389,18 +349,18 @@ export async function getTop10(userProfile?: UserProfile) {
    - Research Autopilot (report generation)
 
 3. **Real-Time Data**:
-   - Demo uses static/mock data
-   - Full version updates every 5-15 minutes
-   - Live arbitrage scanning not active
+   - API calls will fail (no backend)
+   - Pages show loading/error states
+   - No actual market data displayed
 
-### What IS Included
+#### What IS Included
 
-1. ✅ Complete frontend UI
-2. ✅ Onboarding flow
+1. ✅ Complete frontend UI (all pages)
+2. ✅ Navigation and routing
 3. ✅ Dashboard layout and components
-4. ✅ Market detail views
-5. ✅ Responsive design
-6. ✅ TypeScript SDK structure
+4. ✅ Responsive design
+5. ✅ TypeScript SDK structure
+6. ✅ Error handling and loading states
 
 ### To Access Full System
 
@@ -424,8 +384,8 @@ Contact the development team for:
    ```
 
 2. **Read documentation**:
-   - `docs/public/README.md`: Overview
-   - `docs/public/ARCHITECTURE_OVERVIEW.md`: System design
+   - `docs/PRODUCT_OVERVIEW.md`: Overview
+   - `docs/ARCHITECTURE_OVERVIEW.md`: System design
 
 3. **Provide feedback**:
    - GitHub Issues
@@ -449,9 +409,13 @@ Contact the development team for:
 
 ## FAQ
 
+### Q: Why do I see errors when loading pages?
+
+**A**: This is expected! The demo is frontend-only. API calls to the backend (which is not included) will fail. The UI is designed to handle this gracefully with loading/error states. This allows you to see the complete UI design without needing the backend server.
+
 ### Q: Is the data real?
 
-**A**: Yes, in the full version. The public demo uses mock data to showcase UI/UX. The private backend fetches real data from Kalshi and Polymarket APIs.
+**A**: No data is displayed in this demo because the backend is not included. In the full version, the backend fetches real data from Kalshi and Polymarket APIs every 5-15 minutes.
 
 ### Q: How often is data updated?
 
@@ -478,11 +442,11 @@ Contact the development team for:
 ## Contact
 
 **Questions about the demo**:
-- GitHub Issues: `<repo-url>/issues`
-- Email: [contact-email]
+- GitHub Issues: Please create an issue in the repository
+- Email: Contact the development team
 
 **Business inquiries**:
-- Email: [business-email]
+- Email: Contact the development team
 
 **Technical deep-dive**:
 - Schedule via email
@@ -491,4 +455,4 @@ Contact the development team for:
 
 **Demo Guide Version**: 1.0
 **Last Updated**: 2024-12-23
-**Estimated Time**: 15-20 minutes
+**Estimated Time**: 10-15 minutes

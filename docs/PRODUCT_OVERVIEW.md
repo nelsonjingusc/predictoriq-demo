@@ -96,7 +96,10 @@ For detailed architecture, see [ARCHITECTURE_OVERVIEW.md](./ARCHITECTURE_OVERVIE
 ```bash
 # Clone the repository
 git clone <your-public-repo-url>
-cd predictoriq
+cd predictoriq-demo
+
+# Navigate to client directory
+cd client
 
 # Install dependencies
 npm install
@@ -180,8 +183,8 @@ See [DEMO_GUIDE.md](./DEMO_GUIDE.md) for a complete walkthrough of features and 
 ## Contact
 
 For questions about the public demo or collaboration inquiries:
-- GitHub Issues: `<your-repo>/issues`
-- Email: [your-contact-email]
+- GitHub Issues: Please create an issue in the repository
+- Email: Contact the development team
 
 For access to the full backend system:
 - Contact the development team

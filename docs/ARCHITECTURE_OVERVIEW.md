@@ -3,6 +3,8 @@
 **Audience**: External reviewers and potential collaborators
 **Version**: 1.0 (Public)
 
+**Note**: This document describes the full system architecture. The public demo repository only includes the Presentation Layer (frontend). The Intelligence Layer (backend) is in a private repository.
+
 ---
 
 ## System Overview
@@ -43,14 +45,16 @@ PredictorIQ is a three-layer architecture:
 
 ---
 
-## Layer 1: Presentation (Public)
+## Layer 1: Presentation (Public) ✅ Included in Demo
+
+**Status**: Fully implemented in this repository
 
 ### Technology
 
 - **Framework**: Next.js 14 (React + TypeScript)
 - **Styling**: Tailwind CSS
 - **State Management**: React Query
-- **Deployment**: Vercel
+- **Deployment**: Vercel (or any Next.js host)
 
 ### Key Components
 
@@ -76,9 +80,11 @@ PredictorIQ is a three-layer architecture:
 
 ---
 
-## Layer 2: Intelligence (Private)
+## Layer 2: Intelligence (Private) ⚠️ Not Included in Demo
 
-**Note**: This layer is proprietary and not included in the public repository.
+**Status**: Implemented in private repository, not included in this public demo
+
+**Note**: This layer is proprietary and not included in the public repository. The frontend in this demo is designed to work with this backend, but API calls will fail without the backend server running.
 
 ### High-Level Components
 
@@ -186,24 +192,26 @@ Frontend
 
 ## API Design (Public Interface)
 
+**Note**: These endpoints are implemented in the private backend. The frontend SDK in this demo is designed to call these endpoints, but they will not be available when running the demo locally.
+
 ### Core Endpoints
 
-**GET /api/top10**
+**GET /v1/daily-top10**
 - Returns personalized Top10 market recommendations
 - Input: User profile (optional)
 - Output: Ranked markets with AI scores and rationales
 
-**GET /api/markets**
+**GET /v1/markets**
 - Lists all markets with filters
 - Input: Platform, category, status, pagination
 - Output: Array of normalized markets
 
-**GET /api/arbitrage**
+**GET /v1/arbitrage/alerts**
 - Returns cross-platform arbitrage opportunities
 - Input: Min spread threshold
 - Output: Array of arbitrage alerts
 
-**GET /api/markets/{id}**
+**GET /v1/markets/{id}**
 - Returns detailed market information
 - Input: Market ID
 - Output: Market data + risk metrics
