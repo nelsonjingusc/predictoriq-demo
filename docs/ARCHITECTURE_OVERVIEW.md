@@ -352,7 +352,7 @@ For questions about architecture or collaboration:
 - **Email**: [Contact information]
 
 For backend access or licensing:
-- Contact the development team
+- Contact: [nelson.jingusc@gmail.com](mailto:nelson.jingusc@gmail.com)
 
 ---
 

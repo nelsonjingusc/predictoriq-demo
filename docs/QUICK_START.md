@@ -139,5 +139,5 @@ The backend (data processing, ML models, AI agents) is in a separate private rep
 
 - Check the [FAQ in Demo Guide](DEMO_GUIDE.md#faq)
 - Review [Architecture Overview](ARCHITECTURE_OVERVIEW.md)
-- Contact the development team
+- Contact the development team: [nelson.jingusc@gmail.com](mailto:nelson.jingusc@gmail.com)
 

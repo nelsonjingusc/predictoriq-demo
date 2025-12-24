@@ -184,10 +184,10 @@ See [DEMO_GUIDE.md](./DEMO_GUIDE.md) for a complete walkthrough of features and 
 
 For questions about the public demo or collaboration inquiries:
 - GitHub Issues: Please create an issue in the repository
-- Email: Contact the development team
+- Email: [nelson.jingusc@gmail.com](mailto:nelson.jingusc@gmail.com)
 
 For access to the full backend system:
-- Contact the development team
+- Contact: [nelson.jingusc@gmail.com](mailto:nelson.jingusc@gmail.com)
 
 ---
 

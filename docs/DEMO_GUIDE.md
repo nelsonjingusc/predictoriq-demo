@@ -363,7 +363,7 @@ As a reviewer, you should evaluate:
 
 ### To Access Full System
 
-Contact the development team for:
+Contact [nelson.jingusc@gmail.com](mailto:nelson.jingusc@gmail.com) for:
 - Private repository access
 - Backend deployment
 - API credentials
@@ -442,10 +442,10 @@ Contact the development team for:
 
 **Questions about the demo**:
 - GitHub Issues: Please create an issue in the repository
-- Email: Contact the development team
+- Email: [nelson.jingusc@gmail.com](mailto:nelson.jingusc@gmail.com)
 
 **Business inquiries**:
-- Email: Contact the development team
+- Email: [nelson.jingusc@gmail.com](mailto:nelson.jingusc@gmail.com)
 
 **Technical deep-dive**:
 - Schedule via email
