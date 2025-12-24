@@ -1,10 +1,8 @@
 # Quick Start
 
-**Time**: 5 minutes to get started, 15 minutes for full review
-
 ---
 
-## Step 1: Clone and Navigate (30 seconds)
+## Step 1: Clone and Navigate
 
 ```bash
 git clone <repository-url>
@@ -13,7 +11,7 @@ cd predictoriq-demo
 
 ---
 
-## Step 2: Install and Run (2 minutes)
+## Step 2: Install and Run
 
 ```bash
 cd client
@@ -29,7 +27,7 @@ npm run dev
 
 ---
 
-## Step 3: Open in Browser (10 seconds)
+## Step 3: Open in Browser
 
 Open `http://localhost:3000` in your browser.
 
@@ -41,7 +39,7 @@ Open `http://localhost:3000` in your browser.
 
 ---
 
-## Step 4: Explore the UI (5-10 minutes)
+## Step 4: Explore the UI
 
 ### Pages to Visit:
 
@@ -69,7 +67,7 @@ Open `http://localhost:3000` in your browser.
 
 ---
 
-## Step 5: Review Code Structure (Optional, 5 minutes)
+## Step 5: Review Code Structure (Optional)
 
 ```bash
 # Explore the codebase

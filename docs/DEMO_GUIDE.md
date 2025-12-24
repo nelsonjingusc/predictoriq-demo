@@ -2,7 +2,6 @@
 
 **Audience**: External reviewers, potential investors, and collaborators
 **Purpose**: Showcase the frontend UI and core features
-**Time Required**: 10-15 minutes (demo focuses on frontend UI showcase)
 
 ---
 
@@ -31,7 +30,7 @@ This demo showcases PredictorIQ's frontend interface and key features. The demo 
 
 ---
 
-## Quick Verification (30 seconds)
+## Quick Verification
 
 To quickly verify the demo works:
 
@@ -82,7 +81,7 @@ The application will start on `http://localhost:3000`
 
 ## Feature Walkthrough
 
-### 1. Landing Page (1 minute)
+### 1. Landing Page
 
 **URL**: `http://localhost:3000`
 
@@ -96,7 +95,7 @@ The application will start on `http://localhost:3000`
 
 ---
 
-### 2. Top10 Recommendations (5 minutes)
+### 2. Top10 Recommendations
 
 **URL**: `http://localhost:3000/top10`
 
@@ -154,7 +153,7 @@ Each card shows:
 
 ---
 
-### 4. Market Information in Top10 (2 minutes)
+### 4. Market Information in Top10
 
 **What to Observe in Top10 Cards**:
 
@@ -179,7 +178,7 @@ Each market card in the Top10 shows:
 
 ---
 
-### 5. Arbitrage Scanner (3 minutes)
+### 5. Arbitrage Scanner
 
 **URL**: `http://localhost:3000/arbitrage`
 
@@ -235,7 +234,7 @@ Each market card in the Top10 shows:
 
 ---
 
-### 6. Other Demo Pages (2 minutes)
+### 6. Other Demo Pages
 
 **Available Pages**:
 - `/arbitrage` - Cross-platform arbitrage scanner
@@ -455,4 +454,3 @@ Contact the development team for:
 
 **Demo Guide Version**: 1.0
 **Last Updated**: 2024-12-23
-**Estimated Time**: 10-15 minutes
