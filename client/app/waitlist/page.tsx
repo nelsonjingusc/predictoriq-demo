@@ -23,13 +23,37 @@ export default function WaitlistPage() {
     e.preventDefault();
     setError(null);
 
+    // Formspree Integration for real emails
+    const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+
     try {
-      const result = await client.submitWaitlist(formData);
+      // 1. In demo mode, simulate success. Otherwise, call actual API.
+      let result;
+      if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true') {
+        // Simulate a small delay for realism
+        await new Promise(resolve => setTimeout(resolve, 800));
+        result = { success: true, position: Math.floor(Math.random() * 50) + 100 };
+      } else {
+        result = await client.submitWaitlist(formData);
+      }
+
+      // 2. If Formspree ID is provided, send real email in background
+      if (formspreeId) {
+        fetch(`https://formspree.io/f/${formspreeId}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...formData,
+            _subject: `New PredictorIQ Waitlist Request from ${formData.name}`,
+          }),
+        }).catch(err => console.error('Formspree error:', err));
+      }
+
       if (result.success) {
         setSubmitted(true);
         setPosition(result.position || null);
       } else {
-        setError(result.message);
+        setError(result.message || 'Submission failed');
       }
     } catch (err: any) {
       setError(err.message || 'Submission failed');
