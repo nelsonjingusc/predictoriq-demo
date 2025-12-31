@@ -1,5 +1,9 @@
 # PredictorIQ Demo
 
+>**⚠️ Frontend Demonstration - Mock Data Enabled**
+> 
+> This is a **frontend UI showcase** with realistic sample data enabled by default. You can explore the complete product interface without needing a backend server.
+
 This repository contains the public demo dashboard and docs for **PredictorIQ**, a prediction market intelligence and agent infrastructure project.
 
 ## What's in This Repo
@@ -7,6 +11,7 @@ This repository contains the public demo dashboard and docs for **PredictorIQ**,
 - **Frontend UI** (`client/`): Complete Next.js dashboard showcasing the product interface
 - **TypeScript SDK** (`client/packages/sdk/`): Client library for API integration
 - **Documentation** (`docs/`): Product overview, architecture, and demo guide
+- **Mock Data**: Realistic sample data for all features
 
 ## Quick Start
 
@@ -19,7 +24,24 @@ npm run dev
 
 Open `http://localhost:3000` in your browser.
 
-**Note**: This is a frontend-only demo. The UI will attempt to call backend APIs (which are not included in this public repo). API calls will fail, but you can still explore the complete UI and see how the product is designed.
+### ✅ What You'll See
+
+With **demo mode enabled** (default), you'll see:
+- ✅ **Complete UI** with all pages and navigation working
+- ✅ **Realistic mock data** showing AI-ranked markets, arbitrage opportunities, trading strategies, and more
+- ✅ **Full interactivity** - browse, filter, and explore all features
+- ✅ **Fast loading** - no backend required
+
+### Demo Mode
+
+**Demo mode is enabled by default.** The app uses realistic sample data to showcase the product interface.
+
+To switch to live mode (requires backend API):
+```bash
+# In client/.env.local
+NEXT_PUBLIC_DEMO_MODE=false
+NEXT_PUBLIC_API_URL=http://localhost:8000  # Your API URL
+```
 
 ## Documentation
 
@@ -59,12 +81,12 @@ This demo showcases:
 
 **What's NOT included** (in private repo):
 - Backend API server
-- Data ingestion from Kalshi/Polymarket
+- Data ingestion from Kalshi/Polymarket  
 - ML ranking models
 - AI agents implementation
 - Real-time data processing
 
-The frontend is designed to work with a backend API at `http://localhost:8000`, but for this demo, you can explore the UI structure and design without the backend.
+**Note**: In demo mode, the frontend uses realistic mock data instead of live API calls.
 
 ## For Reviewers
 
@@ -73,8 +95,22 @@ This repository demonstrates:
 - ✅ Frontend architecture and code quality
 - ✅ SDK design and API patterns
 - ✅ Technical documentation
+- ✅ **Complete UI with realistic sample data (demo mode)**
+
+**Getting Started**: Simply run `npm install && npm run dev` in the `client/` directory. The app will load with mock data enabled, allowing you to explore all features immediately.
 
 To understand the full system (including backend), see the architecture docs or contact the team for access to the private repository.
+
+### 📧 Form Email Notifications
+
+To receive actual emails when someone joins the waitlist:
+1. Create a free account at [Formspree](https://formspree.io/).
+2. Create a new form and get your **Form ID** (e.g., `xbjebpoy`).
+3. Add it to `client/.env.local`:
+   ```bash
+   NEXT_PUBLIC_FORMSPREE_ID=your_id_here
+   ```
+4. Restart the dev server.
 
 ---
 
