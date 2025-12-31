@@ -1,49 +1,49 @@
 #!/bin/bash
 
-# PredictorIQ Demo 一键启动脚本
-# 使用方法: ./start-demo.sh
+# PredictorIQ Demo Startup Script
+# Usage: ./start-demo.sh
 
-set -e  # 遇到错误立即退出
+set -e  # Exit immediately if a command exits with a non-zero status
 
 echo "🚀 Starting PredictorIQ Demo..."
 echo ""
 
-# 确保在正确的目录
+# Ensure we are in the root directory of the script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-# 进入 client 目录
+# Navigate to client directory
 cd client
 
-# 检查并创建 .env.local 文件
+# Check and initialize .env.local if needed
 if [ ! -f .env.local ]; then
-    echo "📝 Creating .env.local file..."
+    echo "📝 Initializing environment configuration..."
     cp .env.local.example .env.local
-    echo "✅ Demo mode enabled"
+    echo "✅ Demo mode configuration initialized"
 else
-    echo "✅ .env.local already exists"
+    echo "✅ Environment configuration found"
 fi
 
 echo ""
 
-# 检查是否需要安装依赖
+# Verify and install dependencies if missing
 if [ ! -d node_modules ]; then
-    echo "📦 Installing dependencies..."
+    echo "📦 Installing project dependencies..."
     npm install
-    echo "✅ Dependencies installed"
+    echo "✅ Dependency installation complete"
 else
-    echo "✅ Dependencies already installed"
+    echo "✅ Dependencies already up to date"
 fi
 
 echo ""
-echo "🎬 Starting dev server..."
-echo "   The demo will open at http://localhost:3000"
-echo "   (or http://localhost:3001 if port 3000 is in use)"
+echo "🎬 Launching development server..."
+echo "   Access the dashboard at: http://localhost:3000"
+echo "   (or http://localhost:3001 if port 3000 is occupied)"
 echo ""
-echo "📊 Demo Mode Active - Mock data enabled"
-echo "   Press Ctrl+C to stop the server"
+echo "📊 Status: Demo Mode Active (Mock Data Enabled)"
+echo "   Note: Press Ctrl+C to terminate the process"
 echo ""
 echo "---"
 
-# 启动开发服务器
+# Start the Next.js development server
 npm run dev

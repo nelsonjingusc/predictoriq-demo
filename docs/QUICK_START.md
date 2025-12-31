@@ -69,19 +69,20 @@ cd client
 
 ---
 
-## What to Evaluate
+### ✅ What Works (Frontend Demonstration)
+- Professional UI/UX design and layout
+- Page navigation and interaction
+- **Instant Data Display** (via Demo Mode)
+- **Top10 Rankings** (AI-powered Match Scores)
+- **Arbitrage Scanner** (Cross-platform identification)
+- **AI Agent Feed** (Alpha Scout, Portfolio Guardian, Research Autopilot)
+- **Waitlist Form** (Integrated with Formspree)
+- TypeScript SDK design and API patterns
 
-### ✅ What Works (Frontend POC)
-- UI/UX design and layout
-- Page navigation and routing
-- Component structure
-- Code organization
-- TypeScript SDK design
-
-### ⚠️ What Doesn't Work (Expected)
-- API calls (backend not included)
-- Data display (no backend data)
-- Real-time features (no backend)
+### ⚠️ What's Not Included (Private Backend)
+- Real-time data ingestion from live exchanges
+- Proprietary ML ranking models
+- Live AI Agent backend logic
 
 ---
 

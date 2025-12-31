@@ -1,456 +1,103 @@
 # PredictorIQ - Demo Guide
 
-**Audience**: External reviewers, potential investors, and collaborators
-**Purpose**: Showcase the frontend UI and core features
+This guide provides a step-by-step walkthrough of the PredictorIQ demo.
 
 ---
 
-## Overview
+## Getting Started
 
-This demo showcases PredictorIQ's frontend interface and key features. The demo runs with:
-- ✅ Full frontend UI (Next.js)
-- ✅ Complete page structure and navigation
-- ✅ UI components and design system
-- ⚠️ **API calls will fail** (backend not included in public repo)
-- ℹ️ Full backend available upon request (private repository)
-
-**Important**: This is a **frontend-only POC**. The UI is fully functional, but API calls to `http://localhost:8000` will fail because the backend server is not included. This is expected behavior. You can still:
-- Navigate all pages
-- See the UI design and layout
-- Understand the product structure
-- Review the code architecture
-
----
-
-## Prerequisites
-
-- **Node.js**: 18.0 or higher
-- **npm**: Latest version
-- **Web Browser**: Chrome, Firefox, or Safari
-
----
-
-## Quick Verification
-
-To quickly verify the demo works:
+The fastest way to start the demo is by using the provided startup script:
 
 ```bash
-cd client
-npm install
-npm run dev
+./start-demo.sh
 ```
 
-Then open `http://localhost:3000` in your browser. You should see:
-- ✅ Homepage with "The Morningstar for Prediction Markets" tagline
-- ✅ "View Top10" and "Join Waitlist" buttons
-- ✅ Click "View Top10" to see the recommendations page (may show error/loading state due to missing backend)
+This script automatically:
+1. Verifies the environment configuration.
+2. Formats all dependencies.
+3. Launches the Next.js development server on port 3000 (or 3001 if 3000 is occupied).
 
-**Expected Behavior**: 
-- Pages will load and display correctly
-- API calls will fail (showing error/loading states)
-- This is **normal** - the backend is not included in this public demo
-
-If you see the UI pages loading, the demo is working correctly!
+Once the server is running, open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## Quick Start
+## 1. Homepage & Navigation
 
-### Installation
+The landing page introduces PredictorIQ as "The Morningstar for Prediction Markets."
 
-```bash
-# Navigate to client directory
-cd client
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-```
-
-The application will start on `http://localhost:3000`
-
-### First Launch
-
-1. Open your browser to `http://localhost:3000`
-2. You'll see the landing page with the tagline:
-   > **"The Morningstar for Prediction Markets"**
+**Key Observations:**
+- **Navigation Bar**: Instant access to all product modules.
+- **Demo Banner**: A clearly visible blue banner at the top indicates that you are in **Demo Mode**. This ensures transparency about the use of sample data for this presentation.
+- **Design Aesthetic**: Professional, data-centric interface designed for institutional-grade reliability.
 
 ---
 
-## Feature Walkthrough
+## 2. Daily Top10 (Core Feature)
 
-### 1. Landing Page
+Navigate to the **Top10** page via the header menu.
 
-**URL**: `http://localhost:3000`
-
-**What to observe**:
-- Clean, modern design
-- Value proposition clearly stated: "The Morningstar for Prediction Markets"
-- Call-to-action buttons: "View Top10" and "Join Waitlist"
-
-**Key Message**:
-> PredictorIQ helps you find markets where YOU have an advantage, not just what's trending.
+**What you'll see:**
+- **Match Score**: Every market is assigned a "Match Score" (0-10). This represents a personalized rating based on the alignment between the market's requirements and your domain expertise.
+- **Edge Rationale**: High-quality analytical summaries explaining *why* a particular market represents an opportunity.
+- **Market Data**: Real-time metrics including price, 24h volume, and available liquidity across platforms like Kalshi and Polymarket.
+- **Confidence Layer**: A transparency meter showing the AI's confidence in the provided rationale.
 
 ---
 
-### 2. Top10 Recommendations
+## 3. Cross-Platform Arbitrage
 
-**URL**: `http://localhost:3000/top10`
+Navigate to the **Arbitrage** page.
 
-**Note**: The onboarding flow for personalization is planned for the full version. In this demo, you'll see the Top10 recommendations with mock data.
+PredictorIQ identifies price discrepancies between different prediction platforms for the same underlying event.
 
-This is the **core product**.
-
-#### What to Observe
-
-**Header**:
-```
-📊 Daily Top10
-AI-ranked market opportunities across all platforms
-```
-
-**Market Cards**:
-
-Each card shows:
-```
-┌─────────────────────────────────────────┐
-│ #1 | AI Score: 87.0                     │
-├─────────────────────────────────────────┤
-│ Will Fed raise interest rates in March? │
-│                                         │
-│ Platform: KALSHI | Category: Economics │
-│ Price: 60.0% | Volume: $50,000         │
-│                                         │
-│ 💡 Edge: Strong fundamentals...        │
-│                                         │
-│ Recommended: [action if available]      │
-│ Confidence: 85%                        │
-│                                         │
-│ [View Market →]                         │
-└─────────────────────────────────────────┘
-```
-
-#### Key Features to Highlight
-
-1. **AI Score**
-   - 0-100 scoring system (displayed as decimal)
-   - Higher = better opportunity
-   - Combines market quality analysis
-
-2. **Edge Rationale**
-   - Natural language explanation
-   - Generated by AI (in full version)
-   - Explains why this market is recommended
-
-3. **Market Information**
-   - Platform, category, price, volume, liquidity
-   - All key metrics in one view
-   - Direct link to trade on original platform
-
-**Note**: Personalization features (match scores, user-specific recommendations) are planned for the full version. The demo shows the general Top10 rankings with AI-powered analysis.
+**Key Observations:**
+- **Spread Percentage**: Instant calculation of the profit margin between platforms.
+- **Mapping Confidence**: Indicates the reliability of the fuzzy-matching algorithm used to identify identical events across Kalshi and Polymarket.
+- **Execution Legs**: Clear instructions on which side to buy and which to sell to lock in the spread.
 
 ---
 
-### 4. Market Information in Top10
+## 4. Trading Strategies
 
-**What to Observe in Top10 Cards**:
+Navigate to the **Strategies** page.
 
-Each market card in the Top10 shows:
-- **Rank**: Position in the daily recommendations
-- **AI Score**: 0-100 scoring system (higher = better opportunity)
-- **Market Title**: The prediction market question
-- **Platform & Category**: Which platform (Kalshi/Polymarket) and category
-- **Price**: Current market price (as percentage)
-- **Volume 24h**: Trading volume in the last 24 hours
-- **Liquidity**: Available liquidity for trading
-- **Edge Rationale**: AI-generated explanation of why this market is recommended
-- **Recommended Action**: Suggested trading action (if available)
-- **Confidence**: Confidence level in the recommendation
-- **View Market Link**: Direct link to the market on the original platform
+This section showcases reusable strategy templates that can be customized for different market conditions.
 
-**Note**: Detailed market pages with full risk metrics (Greek-style analytics) are planned for the full version. In this demo, the Top10 cards provide key information, and the "View Market →" link takes you to the original platform (Kalshi or Polymarket) for detailed trading.
-
-#### Key Message
-
-> The Top10 cards give you the essential information to evaluate opportunities. Full risk analytics are available in the complete version.
+**Key Observations:**
+- **Entry/Exit Signals**: Detailed technical and fundamental triggers for each strategy.
+- **Risk Assessment**: Categorization of strategies by risk level (Low, Medium, High).
+- **Personalization**: Strategies are ranked based on their suitability for your specific trading profile.
 
 ---
 
-### 5. Arbitrage Scanner
+## 5. Market Ideas & AI Agents
 
-**URL**: `http://localhost:3000/arbitrage`
+### Market Ideas
+The **Ideas** page showcases the system's ability to identify "data gaps" where new prediction markets should be created based on current news cycles and public interest.
 
-**Note**: In demo mode, this may show mock data or be empty (arbitrage opportunities are rare and fleeting)
-
-#### What to Observe
-
-**Arbitrage Alert Card**:
-```
-┌─────────────────────────────────────────┐
-│ 🔥 Arbitrage Opportunity                │
-├─────────────────────────────────────────┤
-│ Event: "Bitcoin to reach $100k in 2024?"│
-│                                         │
-│ Spread: 7.5%                           │
-│ Confidence: 85%                        │
-│                                         │
-│ Leg 1: Kalshi                          │
-│   Action: BUY YES @ 45¢               │
-│   Liquidity: $50,000                   │
-│                                         │
-│ Leg 2: Polymarket                      │
-│   Action: SELL YES @ 52¢              │
-│   Liquidity: $30,000                   │
-│                                         │
-│ Estimated Profit: 7¢ per contract     │
-│                                         │
-│ ⚠️ Requires manual verification         │
-│                                         │
-│ [View Details]                         │
-└─────────────────────────────────────────┘
-```
-
-#### Key Features
-
-**Fuzzy Matching**:
-- Same event on different platforms
-- Slight title differences normalized
-- Confidence score shows match quality
-
-**Spread Calculation**:
-- Price difference between platforms
-- Minimum 5% for alert
-- Account for fees/slippage
-
-**Liquidity Check**:
-- Both sides must have sufficient liquidity
-- Prevents phantom opportunities
-
-#### Key Message
-
-> No other tool gives you cross-platform arbitrage for prediction markets. This is unique to PredictorIQ.
+### AI Agents Feed
+The **Agents** page displays a live stream of insights from three specialized AI agents:
+- **Alpha Scout**: Discovers new opportunities.
+- **Portfolio Guardian**: Sends risk alerts and rebalancing suggestions.
+- **Research Autopilot**: Generates deep-dive reports on specific markets.
 
 ---
 
-### 6. Other Demo Pages
+## 6. Form Integration (Waitlist)
 
-**Available Pages**:
-- `/arbitrage` - Cross-platform arbitrage scanner
-- `/strategies` - Trading strategy templates
-- `/ideas` - Market creation ideas
-- `/agents` - AI agents feed
-- `/pricing` - Subscription plans
-- `/api` - API documentation
-- `/waitlist` - Early access signup
+Navigate to the **Waitlist** page.
 
-**Note**: The full market explorer with filters is planned for the full version. In this demo, you can explore the Top10 and other feature pages.
+This form demonstrates full integration with **Formspree** for real-time email notifications. When a user joins the waitlist, an actual email can be sent to pre-configured destination addresses (e.g., for lead capture).
 
 ---
 
-## Demo Tips
+## Technical Appendix
 
-### For Technical Reviewers
-
-**Highlight**:
-1. **Architecture**: Client-server separation, clean API design
-2. **Performance**: Fast page loads, smooth transitions
-3. **Responsiveness**: Works on mobile, tablet, desktop
-4. **Scalability**: Can handle 3,600+ markets
-
-**Code to Show**:
-```typescript
-// client/lib/api-client.ts
-export async function getTop10(userProfile?: UserProfile) {
-  const response = await fetch('/api/top10', {
-    method: 'POST',
-    body: JSON.stringify({ user_profile: userProfile })
-  });
-  return response.json();
-}
-```
-
-### For Business/Product Reviewers
-
-**Highlight**:
-1. **Differentiation**: Personalization is unique
-2. **User Value**: Find YOUR edge, not popular trades
-3. **Market Size**: 3,600+ markets, two platforms (expandable)
-4. **Monetization**: Freemium (generic) vs Premium (personalized)
-
-**Value Prop**:
-> "Kalshi shows you the top 10 by volume. We show you the top 10 for YOU."
-
-### For Investors
-
-**Highlight**:
-1. **Traction**: Real data from real markets (Kalshi, Polymarket)
-2. **Technology**: AI/ML-powered, modern stack
-3. **Scalability**: Add platforms easily (Metaculus, PredictIt next)
-4. **Business Model**:
-   - Free: Generic Top10
-   - Pro ($29/mo): Personalized recommendations
-   - Agent ($99/mo): AI agents + portfolio management
-
-**Market Opportunity**:
-- Prediction markets growing rapidly
-- Kalshi: CFTC-regulated, mainstream adoption
-- Polymarket: $1B+ in volume
-- No competitor offers personalization at this level
+- **Frontend**: Next.js 14, Tailwind CSS, TypeScript.
+- **Architecture**: A clean separation of concerns using a proprietary TypeScript SDK for API communication.
+- **Demo Mode**: Implemented via a robust mock data layer in `client/lib/mock-data.ts`, ensuring zero backend dependencies for this preview.
 
 ---
 
-## Understanding This POC
-
-### What This Demo Shows
-
-This is a **frontend-only proof of concept** designed to demonstrate:
-
-1. **Product Vision**: Complete UI showing all planned features
-2. **User Experience**: Navigation flow, page layouts, and interactions
-3. **Technical Architecture**: 
-   - Next.js 14 app structure
-   - TypeScript SDK design
-   - Component organization
-   - API integration patterns
-
-### How It Works
-
-1. **Frontend Structure**: All pages are implemented and navigable
-2. **API Integration**: Code uses the SDK to call backend APIs
-3. **Expected Behavior**: API calls fail (backend not included), but UI still renders
-4. **Error Handling**: Pages show loading/error states gracefully
-
-### What to Focus On
-
-As a reviewer, you should evaluate:
-
-- ✅ **UI/UX Design**: Is the interface intuitive and well-designed?
-- ✅ **Product Vision**: Do the features make sense for the use case?
-- ✅ **Code Quality**: Is the frontend code well-structured?
-- ✅ **Architecture**: Is the SDK and component design scalable?
-- ✅ **Documentation**: Are the docs clear and helpful?
-
-### Limitations of Public Demo
-
-#### What's NOT Included
-
-1. **Backend Server**:
-   - API endpoints (FastAPI server)
-   - Data ingestion from Kalshi/Polymarket
-   - ML ranking models (proprietary)
-   - Personalization algorithm (proprietary)
-
-2. **AI Agents**:
-   - Alpha Scout (opportunity discovery)
-   - Portfolio Guardian (risk monitoring)
-   - Research Autopilot (report generation)
-
-3. **Real-Time Data**:
-   - API calls will fail (no backend)
-   - Pages show loading/error states
-   - No actual market data displayed
-
-#### What IS Included
-
-1. ✅ Complete frontend UI (all pages)
-2. ✅ Navigation and routing
-3. ✅ Dashboard layout and components
-4. ✅ Responsive design
-5. ✅ TypeScript SDK structure
-6. ✅ Error handling and loading states
-
-### To Access Full System
-
-Contact [nelson.jingusc@gmail.com](mailto:nelson.jingusc@gmail.com) for:
-- Private repository access
-- Backend deployment
-- API credentials
-- Full demo with live data
-
----
-
-## Next Steps After Demo
-
-### For Reviewers
-
-1. **Explore the code**:
-   ```bash
-   cd client
-   # Browse app/ directory for pages
-   # Check components/ for UI components
-   ```
-
-2. **Read documentation**:
-   - `docs/PRODUCT_OVERVIEW.md`: Overview
-   - `docs/ARCHITECTURE_OVERVIEW.md`: System design
-
-3. **Provide feedback**:
-   - GitHub Issues
-   - Email contact
-
-### For Potential Collaborators
-
-1. **Schedule technical deep-dive**
-   - Backend architecture walkthrough
-   - ML model explanation
-   - Data pipeline demo
-
-2. **Discuss use cases**
-   - White-label for prediction market platforms
-   - Institutional trading tools
-   - API integration
-
-3. **Explore partnership opportunities**
-
----
-
-## FAQ
-
-### Q: Why do I see errors when loading pages?
-
-**A**: This is expected! The demo is frontend-only. API calls to the backend (which is not included) will fail. The UI is designed to handle this gracefully with loading/error states. This allows you to see the complete UI design without needing the backend server.
-
-### Q: Is the data real?
-
-**A**: No data is displayed in this demo because the backend is not included. In the full version, the backend fetches real data from Kalshi and Polymarket APIs every 5-15 minutes.
-
-### Q: How often is data updated?
-
-**A**: Every 5-15 minutes in the full version, based on market liquidity.
-
-### Q: Can I use this for actual trading?
-
-**A**: The public demo is for evaluation only. For trading-ready version, contact the team.
-
-### Q: What platforms do you support?
-
-**A**: Currently Kalshi and Polymarket (~3,600 markets). Limitless, Metaculus, and PredictIt are on the roadmap.
-
-### Q: How does personalization work?
-
-**A**: We match your professional background, domain expertise, and location to markets where you have informational advantage. See [ARCHITECTURE_OVERVIEW.md](./ARCHITECTURE_OVERVIEW.md) for details.
-
-### Q: Is this open source?
-
-**A**: The frontend is available for review under MIT license. The backend is proprietary.
-
----
-
-## Contact
-
-**Questions about the demo**:
-- GitHub Issues: Please create an issue in the repository
-- Email: [nelson.jingusc@gmail.com](mailto:nelson.jingusc@gmail.com)
-
-**Business inquiries**:
-- Email: [nelson.jingusc@gmail.com](mailto:nelson.jingusc@gmail.com)
-
-**Technical deep-dive**:
-- Schedule via email
-
----
-
-**Demo Guide Version**: 1.0
-**Last Updated**: 2024-12-23
+**Last Updated**: December 2024
+**Contact**: nelson.jingusc@gmail.com
