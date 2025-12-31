@@ -14,12 +14,14 @@ cd predictoriq-demo
 ## Step 2: Install and Run
 
 ```bash
-cd client
-npm install
-npm run dev
+# RECOMMENDED: One-click start
+./start-demo.sh
+
+# OR Manual:
+cd client && npm install && npm run dev
 ```
 
-**Expected output**: 
+**Expected output**:
 ```
 ▲ Next.js 14.x.x
 - Local:        http://localhost:3000
@@ -32,38 +34,24 @@ npm run dev
 Open `http://localhost:3000` in your browser.
 
 **What you should see**:
-- ✅ Homepage loads successfully
-- ✅ "The Morningstar for Prediction Markets" tagline
-- ✅ Navigation menu
-- ✅ "View Top10" and "Join Waitlist" buttons
+- ✅ Homepage loads with a professional design
+- ✅ **Demo Mode Active** banner appears at the top
+- ✅ Navigation menu for all features
+- ✅ Instant access to all pages
 
 ---
 
-## Step 4: Explore the UI
+## Step 4: Explore the UI (Demo Mode Ready)
 
-### Pages to Visit:
+Unlike a standard POC, this demo includes **realistic mock data** for all features. You can explore:
 
-1. **Homepage** (`/`)
-   - Overview of features
-   - Feature cards
+1. **Top10** (`/top10`): AI-ranked market opportunities with **Match Scores**.
+2. **Arbitrage** (`/arbitrage`): Cross-platform price spreads.
+3. **Strategies** (`/strategies`): Sample trading strategy templates.
+4. **Ideas** (`/ideas`): Market creation suggestions.
+5. **Agents** (`/agents`): Verified AI agent message feed.
 
-2. **Top10** (`/top10`)
-   - ⚠️ Will show error/loading (expected - no backend)
-   - But you can see the page structure and design
-
-3. **Arbitrage** (`/arbitrage`)
-   - ⚠️ Will show error/loading (expected)
-   - UI layout is visible
-
-4. **Other Pages**:
-   - `/strategies` - Trading strategies
-   - `/ideas` - Market ideas
-   - `/agents` - AI agents feed
-   - `/pricing` - Pricing page
-   - `/api` - API documentation
-   - `/waitlist` - Waitlist signup
-
-**Note**: All pages that call APIs will show error/loading states. This is **normal** - the backend is not included in this demo.
+**Note**: All pages will load instantly with sample data. No backend connection is required.
 
 ---
 
@@ -125,9 +113,9 @@ The backend (data processing, ML models, AI agents) is in a separate private rep
 - Try `npm install --legacy-peer-deps` if there are dependency conflicts
 
 ### Pages show errors
-- This is **expected** - API calls fail without backend
-- The UI structure is still visible
-- Check browser console for details (errors are normal)
+- Ensure you are in **Demo Mode** (`NEXT_PUBLIC_DEMO_MODE=true` in `.env.local`).
+- If demo mode is off, errors are expected as the backend is not running.
+- In Demo Mode, all pages should load instantly with mock data.
 
 ### Port 3000 already in use
 - Change port: `npm run dev -- -p 3001`

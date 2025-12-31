@@ -16,13 +16,14 @@ This repository contains the public demo dashboard and docs for **PredictorIQ**,
 ## Quick Start
 
 ```bash
-# Install and run the demo
-cd client
-npm install
-npm run dev
+# One-click start (recommended)
+./start-demo.sh
 ```
 
-Open `http://localhost:3000` in your browser.
+Or manually:
+```bash
+cd client && npm install && npm run dev
+```
 
 ### ✅ What You'll See
 
@@ -97,7 +98,7 @@ This repository demonstrates:
 - ✅ Technical documentation
 - ✅ **Complete UI with realistic sample data (demo mode)**
 
-**Getting Started**: Simply run `npm install && npm run dev` in the `client/` directory. The app will load with mock data enabled, allowing you to explore all features immediately.
+**Getting Started**: Simply run `./start-demo.sh` in the root directory. The app will automatically handle environment setup, dependency installation, and start the server with mock data enabled.
 
 To understand the full system (including backend), see the architecture docs or contact the team for access to the private repository.
 
