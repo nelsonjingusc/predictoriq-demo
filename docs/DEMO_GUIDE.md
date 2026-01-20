@@ -13,8 +13,8 @@ The fastest way to start the demo is by using the provided startup script:
 ```
 
 This script automatically:
-1. Verifies the environment configuration.
-2. Formats all dependencies.
+1. Verifies the environment configuration (creates .env.local if needed).
+2. Installs dependencies if missing.
 3. Launches the Next.js development server on port 3000 (or 3001 if 3000 is occupied).
 
 Once the server is running, open [http://localhost:3000](http://localhost:3000) in your browser.
@@ -48,42 +48,16 @@ Navigate to the **Top10** page via the header menu.
 
 Navigate to the **Arbitrage** page.
 
-PredictorIQ identifies price discrepancies between different prediction platforms for the same underlying event.
+PredictorIQ identifies price discrepancies for the same event across different platforms (Polymarket, Kalshi, Opinion, Limitless).
 
 **Key Observations:**
 - **Spread Percentage**: Instant calculation of the profit margin between platforms.
-- **Mapping Confidence**: Indicates the reliability of the fuzzy-matching algorithm used to identify identical events across Kalshi and Polymarket.
-- **Execution Legs**: Clear instructions on which side to buy and which to sell to lock in the spread.
+- **Mapping Confidence**: Indicates the reliability of the event matching algorithm used to identify identical events across platforms.
+- **Execution Instructions**: Clear instructions on which side to buy and which to sell to lock in the spread.
 
 ---
 
-## 4. Trading Strategies
-
-Navigate to the **Strategies** page.
-
-This section showcases reusable strategy templates that can be customized for different market conditions.
-
-**Key Observations:**
-- **Entry/Exit Signals**: Detailed technical and fundamental triggers for each strategy.
-- **Risk Assessment**: Categorization of strategies by risk level (Low, Medium, High).
-- **Personalization**: Strategies are ranked based on their suitability for your specific trading profile.
-
----
-
-## 5. Market Ideas & AI Agents
-
-### Market Ideas
-The **Ideas** page showcases the system's ability to identify "data gaps" where new prediction markets should be created based on current news cycles and public interest.
-
-### AI Agents Feed
-The **Agents** page displays a live stream of insights from three specialized AI agents:
-- **Alpha Scout**: Discovers new opportunities.
-- **Portfolio Guardian**: Sends risk alerts and rebalancing suggestions.
-- **Research Autopilot**: Generates deep-dive reports on specific markets.
-
----
-
-## 6. Form Integration (Waitlist)
+## 4. Form Integration (Waitlist)
 
 Navigate to the **Waitlist** page.
 
@@ -99,5 +73,5 @@ This form demonstrates full integration with **Formspree** for real-time email n
 
 ---
 
-**Last Updated**: December 2024
+**Last Updated**: January 2026
 **Contact**: nelson.jingusc@gmail.com

@@ -29,7 +29,6 @@ graph TB
         
         D --> E["<b>Actionable Insights<br/>with Explicit Rationale</b>"]
         
-        F["<b>Institutional Metrics<br/>Liquidity, Volume, Quality</b>"] -.-> D
     end
     
     style A fill:#10B981,stroke:#047857,stroke-width:3px,color:#ffffff
@@ -125,7 +124,6 @@ graph TD
     A["<b>Option Pricing</b><br/>Mispricing Signal"] --> E["<b>Signal Synthesis</b><br/>& Ranking Engine"]
     B["<b>Arbitrage</b><br/>Opportunities"] --> E
     C["<b>User Profile</b><br/>Expertise Domains<br/>Geographic Location<br/>Risk Preferences"] --> E
-    D["<b>Institutional Metrics</b><br/>Liquidity Depth<br/>Volume Analysis<br/>Quality Scores"] --> E
     
     E --> F{Market Scoring}
     F --> G["<b>Arbitrage</b><br/>Opportunities<br/>Priority: High"]
@@ -154,7 +152,7 @@ graph TD
 **How Top10 Works**:
 1. **Primary Signal Detection**: Identifies markets with arbitrage opportunities OR pricing deviations from option markets
 2. **Personalization Matching**: Matches user expertise and preferences (similar to Match Score from v0.1)
-3. **Institutional Metrics**: Incorporates liquidity depth, volume analysis, and quality scores
+3. **Liquidity Check**: Ensures sufficient liquidity and volume for execution
 4. **Ranking Algorithm**: Combines opportunity score + personalization fit to produce Top10
 
 **Each Top10 Recommendation Includes**:
@@ -162,18 +160,7 @@ graph TD
 - **Primary Signal**: Arbitrage opportunity OR pricing deviation OR best personalization fit
 - **Rationale**: Explicit explanation of why this market is recommended
 - **Actionability**: Specific recommendation (e.g., "BUY YES - 3% undervalued vs option markets" or "Arbitrage opportunity: 7% spread detected")
-- **Institutional Metrics**: Liquidity depth, 24h volume, platform distribution
-
----
-
-## Institutional-Grade Metrics
-
-PredictorIQ provides professional risk and quality metrics for serious participants:
-
-- **Liquidity Depth**: Order book analysis across platforms
-- **Volume Analysis**: 24h volume trends and patterns
-- **Quality Scores**: Platform reliability and market integrity metrics
-- **Cross-Platform Spreads**: Real-time price discrepancy monitoring
+- **Market Data**: Price, 24h volume, and liquidity across platforms
 
 ---
 

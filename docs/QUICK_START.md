@@ -45,11 +45,8 @@ Open `http://localhost:3000` in your browser.
 
 Unlike a standard POC, this demo includes **realistic mock data** for all features. You can explore:
 
-1. **Top10** (`/top10`): AI-ranked market opportunities with **Match Scores**.
-2. **Arbitrage** (`/arbitrage`): Cross-platform price spreads.
-3. **Strategies** (`/strategies`): Sample trading strategy templates.
-4. **Ideas** (`/ideas`): Market creation suggestions.
-5. **Agents** (`/agents`): Verified AI agent message feed.
+1. **Top10** (`/top10`): AI-ranked market opportunities with personalized recommendations.
+2. **Arbitrage** (`/arbitrage`): Cross-platform price spreads and arbitrage opportunities.
 
 **Note**: All pages will load instantly with sample data. No backend connection is required.
 
@@ -73,16 +70,15 @@ cd client
 - Professional UI/UX design and layout
 - Page navigation and interaction
 - **Instant Data Display** (via Demo Mode)
-- **Top10 Rankings** (AI-powered Match Scores)
+- **Top10 Rankings** (Personalized recommendations based on arbitrage opportunities and pricing analysis)
 - **Arbitrage Scanner** (Cross-platform identification)
-- **AI Agent Feed** (Alpha Scout, Portfolio Guardian, Research Autopilot)
 - **Waitlist Form** (Integrated with Formspree)
 - TypeScript SDK design and API patterns
 
 ### ⚠️ What's Not Included (Private Backend)
 - Real-time data ingestion from live exchanges
-- Proprietary ML ranking models
-- Live AI Agent backend logic
+- Option pricing engine and analysis
+- Arbitrage scanner with real-time monitoring
 
 ---
 

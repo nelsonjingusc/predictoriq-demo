@@ -50,4 +50,4 @@ NEXT_PUBLIC_API_URL=https://api.yourdomain.com
 
 ---
 
-**Last Updated**: December 2024
+**Last Updated**: January 2026
