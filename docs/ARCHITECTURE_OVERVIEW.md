@@ -56,7 +56,7 @@ Continuously polls prediction exchanges for new markets and price updates across
 #### 2.2 Normalization Layer
 Converts platform-specific formats (e.g., Kalshi's cents vs. Polymarket's decimals) into a unified schema.
 
-#### 2.3 Analysis Engines (v0.2)
+#### 2.3 Analysis Engines
 
 ```mermaid
 graph LR
@@ -82,13 +82,13 @@ graph LR
     style H fill:#EC4899,stroke:#BE185D,stroke-width:4px,color:#FFFFFF
 ```
 
-**Option Pricing Engine (v0.2)**:
+**Option Pricing Engine**:
 - Maps prediction markets to equivalent option payoffs (digital/barrier options)
 - Uses implied volatility from real option markets (Deribit, CBOE, etc.)
 - Computes risk-neutral fair probabilities
 - Identifies markets that are cheap, fair, or expensive relative to option markets
 
-**Arbitrage Scanner (v0.2)**:
+**Arbitrage Scanner**:
 - Normalizes event definitions across platforms
 - Compares implied probabilities to detect price discrepancies
 - Calculates spread percentages and identifies executable arbitrage opportunities
@@ -146,9 +146,9 @@ The SDK provides a type-safe interface for any frontend or automated trading sys
 - Built-in support for environment-based configuration
 
 **Core Endpoints:**
-- `getDailyTop10(userProfile?)`: Get personalized Top10 recommendations (v0.1 + v0.2)
-- `getArbitrageAlerts()`: Real-time arbitrage opportunities (v0.2)
-- `getOptionPricingAnalysis(marketId)`: Option-anchored pricing analysis (v0.2)
+- `getDailyTop10(userProfile?)`: Get personalized Top10 recommendations
+- `getArbitrageAlerts()`: Real-time arbitrage opportunities
+- `getOptionPricingAnalysis(marketId)`: Option-anchored pricing analysis
 
 ---
 
@@ -188,5 +188,4 @@ sequenceDiagram
 ---
 
 **Last Updated**: January 2026  
-**Version**: 0.2  
 **Contact**: nelson.jingusc@gmail.com

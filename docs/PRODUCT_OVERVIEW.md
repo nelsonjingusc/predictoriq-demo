@@ -1,6 +1,6 @@
 # PredictorIQ - Product Overview
 
-> **Version 0.2** - Intelligence layer for prediction markets designed for serious, long-term participants
+> Intelligence layer for prediction markets designed for serious, long-term participants
 
 PredictorIQ is an intelligent intelligence layer for prediction markets, designed to help traders find asymmetric opportunities where they possess a unique informational edge.
 
@@ -22,7 +22,7 @@ PredictorIQ provides objective pricing anchors from professional financial marke
 
 ```mermaid
 graph TB
-    subgraph "PredictorIQ v0.2"
+    subgraph "PredictorIQ"
         A["<b>Option-Anchored<br/>Pricing Analysis</b>"] --> D["<b>Personalized<br/>Top10 Recommendations</b>"]
         B["<b>Cross-Platform<br/>Arbitrage Scanner</b>"] --> D
         C["<b>User Profile<br/>Expertise Matching</b>"] --> D
@@ -196,5 +196,4 @@ This public repository contains the **Frontend Dashboard** and **TypeScript SDK*
 ---
 
 **Last Updated**: January 2026  
-**Version**: 0.2  
 **Contact**: nelson.jingusc@gmail.com
