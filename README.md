@@ -29,7 +29,7 @@ cd client && npm install && npm run dev
 
 With **demo mode enabled** (default), you'll see:
 - ✅ **Complete UI** with all pages and navigation working
-- ✅ **Realistic mock data** showing AI-ranked markets, arbitrage opportunities, trading strategies, and more
+- ✅ **Realistic mock data** showing Top10 recommendations, arbitrage opportunities, and option pricing analysis
 - ✅ **Full interactivity** - browse, filter, and explore all features
 - ✅ **Fast loading** - no backend required
 
@@ -83,8 +83,8 @@ This demo showcases:
 **What's NOT included** (in private repo):
 - Backend API server
 - Data ingestion from Kalshi/Polymarket  
-- ML ranking models
-- AI agents implementation
+- Option pricing engine
+- Arbitrage scanner
 - Real-time data processing
 
 **Note**: In demo mode, the frontend uses realistic mock data instead of live API calls.
