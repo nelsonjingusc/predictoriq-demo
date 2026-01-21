@@ -36,7 +36,6 @@ graph TB
     style C fill:#3B82F6,stroke:#1E40AF,stroke-width:3px,color:#ffffff
     style D fill:#8B5CF6,stroke:#6D28D9,stroke-width:4px,color:#ffffff
     style E fill:#EC4899,stroke:#BE185D,stroke-width:3px,color:#ffffff
-    style F fill:#64748B,stroke:#475569,stroke-width:2px,color:#ffffff
 ```
 
 ---
@@ -139,7 +138,6 @@ graph TD
     style A fill:#10B981,stroke:#047857,stroke-width:3px,color:#FFFFFF
     style B fill:#F59E0B,stroke:#D97706,stroke-width:3px,color:#FFFFFF
     style C fill:#3B82F6,stroke:#1E40AF,stroke-width:3px,color:#FFFFFF
-    style D fill:#64748B,stroke:#475569,stroke-width:3px,color:#FFFFFF
     style E fill:#8B5CF6,stroke:#6D28D9,stroke-width:4px,color:#FFFFFF
     style F fill:#E5E7EB,stroke:#6B7280,stroke-width:2px,color:#111827
     style G fill:#EF4444,stroke:#DC2626,stroke-width:3px,color:#FFFFFF
