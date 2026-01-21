@@ -8,12 +8,12 @@ PredictorIQ follows a modern, three-layer architectural pattern designed for hig
 
 ```mermaid
 graph TD
-    User((<b>User</b>)) -->|HTTPS| Presentation["<b>Presentation Layer</b><br/>Next.js"]
+    User((<b>User</b>)) -->|HTTPS| Presentation["<b>Presentation Layer</b>"]
     Presentation -->|SDK| SDK["<b>PredictorIQ TypeScript SDK</b>"]
     SDK -->|REST API| Intelligence["<b>Intelligence Layer</b><br/>FastAPI/Python"]
     Intelligence -->|Aggregation| Sources["<b>Data Sources</b><br/>Kalshi, Polymarket, etc."]
     
-    subgraph "This Repository (Frontend Demo)"
+    subgraph "This Repository"
         Presentation
         SDK
         DemoMode["<b>Demo Mode</b><br/>/ Mock Data"]
