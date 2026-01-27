@@ -10,12 +10,6 @@ This page describes how ChainGPT is integrated in this branch, and what the inte
 - The model consumes structured JSON signals, not raw market feeds.
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables': {
-  'fontSize': '16px',
-  'fontFamily': 'Inter, ui-sans-serif, system-ui',
-  'primaryTextColor': '#0F172A',
-  'lineColor': '#334155'
-}}}%%
 flowchart TB
   %% Colors chosen for high contrast and readability.
   classDef client fill:#E0F2FE,stroke:#0284C7,color:#0F172A,stroke-width:2px;
@@ -24,13 +18,13 @@ flowchart TB
   classDef model fill:#FFE4E6,stroke:#E11D48,color:#4C0519,stroke-width:2px;
   classDef util fill:#EDE9FE,stroke:#7C3AED,color:#1E1B4B,stroke-width:2px;
 
-  subgraph C[Client (Next.js / React)]
-    UI1[Top10 UI\n- Explanation panel (UC1)\n- Research copilot (UC2)]:::client
+  subgraph C["Client — Next.js + React"]
+    UI1["Top10 UI<br/>- Explanation panel (UC1)<br/>- Research copilot (UC2)"]:::client
     UI2[Help widget (UC5)]:::client
-    UI3[ChainGPT preview page\n(UC3/UC4/UC6)]:::client
+    UI3["ChainGPT preview page<br/>(UC3/UC4/UC6)"]:::client
   end
 
-  subgraph A[Server (Next.js API routes)]
+  subgraph A["Server — Next.js API routes"]
     R1[/POST /api/chaingpt/explain-market/]:::api
     R2[/POST /api/chaingpt/research-copilot/]:::api
     R3[/POST /api/chaingpt/help/]:::api
@@ -39,16 +33,16 @@ flowchart TB
     R6[/POST /api/chaingpt/generate-anomaly-tweet/]:::api
   end
 
-  subgraph P[PredictorIQ signals (deterministic)]
-    S1[Structured MarketSignal JSON\n(mispricing, anomalyScore,\nliquidity, etc.)]:::core
+  subgraph P["PredictorIQ signals — deterministic"]
+    S1["Structured MarketSignal JSON<br/>(mispricing, anomalyScore,<br/>liquidity, etc.)"]:::core
   end
 
-  subgraph L[ChainGPT]
-    M1[ChainGPT model API\n(HTTPS)]:::model
+  subgraph L["ChainGPT"]
+    M1["ChainGPT model API<br/>(HTTPS)"]:::model
   end
 
-  subgraph D[Demo fallback (optional)]
-    F1[Deterministic demo responses\nwhen demo mode is on\nand no API key is set]:::util
+  subgraph D["Demo fallback — optional"]
+    F1["Deterministic demo responses<br/>when demo mode is on<br/>and no API key is set"]:::util
   end
 
   UI1 --> R1
@@ -93,28 +87,22 @@ flowchart TB
 - Agent-facing Content Generation (UC3/UC4/UC6): daily note + digest + anomaly text generation (text-only; no execution).
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables': {
-  'fontSize': '16px',
-  'fontFamily': 'Inter, ui-sans-serif, system-ui',
-  'primaryTextColor': '#0F172A',
-  'lineColor': '#334155'
-}}}%%
 flowchart LR
   classDef ui fill:#E0F2FE,stroke:#0284C7,color:#0F172A,stroke-width:2px;
   classDef route fill:#DCFCE7,stroke:#16A34A,color:#052E16,stroke-width:2px;
   classDef svc fill:#FEF9C3,stroke:#CA8A04,color:#422006,stroke-width:2px;
   classDef out fill:#FFE4E6,stroke:#E11D48,color:#4C0519,stroke-width:2px;
 
-  subgraph UI[UI Surface]
-    U1[UC1: Explanation panel\n(on Top10 cards)]:::ui
-    U2[UC2: Research copilot\n(modal chat)]:::ui
-    U3[UC5: Help widget\n(floating chat)]:::ui
-    U4[UC6: Daily note generator\n(/chaingpt)]:::ui
-    U5[UC3: Daily digest text\n(/chaingpt)]:::ui
-    U6[UC4: Anomaly alert text\n(/chaingpt)]:::ui
+  subgraph UI["UI surface"]
+    U1["UC1: Explanation panel<br/>(on Top10 cards)"]:::ui
+    U2["UC2: Research copilot<br/>(modal chat)"]:::ui
+    U3["UC5: Help widget<br/>(floating chat)"]:::ui
+    U4["UC6: Daily note generator<br/>(/chaingpt)"]:::ui
+    U5["UC3: Daily digest text<br/>(/chaingpt)"]:::ui
+    U6["UC4: Anomaly alert text<br/>(/chaingpt)"]:::ui
   end
 
-  subgraph Routes[Next.js API Routes]
+  subgraph Routes["Next.js API routes"]
     A1[/explain-market/]:::route
     A2[/research-copilot/]:::route
     A3[/help/]:::route
@@ -123,7 +111,7 @@ flowchart LR
     A6[/generate-anomaly-tweet/]:::route
   end
 
-  subgraph Services[Domain Services (server-side)]
+  subgraph Services["Domain services — server-side"]
     S1[markets/explanationService]:::svc
     S2[markets/researchCopilotService]:::svc
     S3[help/helpService]:::svc
@@ -131,13 +119,13 @@ flowchart LR
     S5[tweets/tweetService]:::svc
   end
 
-  subgraph Outputs[Outputs]
-    O1[Explanation JSON\n(stance + summary)]:::out
-    O2[Answer text\n(chat)]:::out
+  subgraph Outputs["Outputs"]
+    O1["Explanation JSON<br/>(stance + summary)"]:::out
+    O2["Answer text<br/>(chat)"]:::out
     O3[Help answer text]:::out
-    O4[Daily research note\n(Markdown)]:::out
-    O5[Digest tweets\n(text)]:::out
-    O6[Anomaly alert tweet\n(text)]:::out
+    O4["Daily research note<br/>(Markdown)"]:::out
+    O5["Digest tweets<br/>(text)"]:::out
+    O6["Anomaly alert tweet<br/>(text)"]:::out
   end
 
   U1 --> A1 --> S1 --> O1

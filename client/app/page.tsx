@@ -36,7 +36,7 @@ export default function Home() {
         <FeatureCard
           icon="📊"
           title="AI-Ranked Top10"
-          description="LightGBM + LLM powered daily recommendations"
+          description="LightGBM-ranked daily recommendations with explanations"
           link="/top10"
         />
         <FeatureCard

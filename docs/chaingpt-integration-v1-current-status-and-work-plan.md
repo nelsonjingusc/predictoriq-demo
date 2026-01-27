@@ -69,7 +69,7 @@ Error codes (quick reference):
 - `401`: missing/bad API key
 - `402/403`: out of credits
 
-Source: ChainGPT JS/REST quickstart guide (`https://docs.chaingpt.org/dev-docs-b2b-saas-api-and-sdk/web3-ai-chatbot-and-llm-api-and-sdk/javascript/quickstart-guide`).
+Source: ChainGPT developer docs (`https://docs.chaingpt.org/dev-docs-b2b-saas-api-and-sdk/`).
 
 ### AgenticOS (Twitter/X)
 

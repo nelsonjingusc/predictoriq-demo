@@ -18,7 +18,7 @@ type ChaingptBlobResponse =
  * Non-streaming wrapper around ChainGPT's single endpoint:
  * POST https://api.chaingpt.org/chat/stream
  *
- * Docs: https://docs.chaingpt.org/dev-docs-b2b-saas-api-and-sdk/web3-ai-chatbot-and-llm-api-and-sdk/javascript/quickstart-guide
+ * Docs: https://docs.chaingpt.org/dev-docs-b2b-saas-api-and-sdk/
  */
 export async function chaingptChatBlob(opts: ChaingptChatOptions): Promise<string> {
   assertChaingptConfigured();
