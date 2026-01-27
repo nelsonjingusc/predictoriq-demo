@@ -13,6 +13,7 @@ export default function Navigation() {
     { href: '/strategies', label: 'Strategies' },
     { href: '/ideas', label: 'Ideas' },
     { href: '/agents', label: 'Agents' },
+    { href: '/chaingpt', label: 'ChainGPT' },
     { href: '/pricing', label: 'Pricing' },
     { href: '/api', label: 'API' },
     { href: '/waitlist', label: 'Waitlist' },

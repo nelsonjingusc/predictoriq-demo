@@ -4,12 +4,20 @@ import { PredictorIQClient, Top10Response } from '@predictoriq/sdk';
 import { useMockData } from '@/lib/demo-mode';
 import { mockTop10Data } from '@/lib/mock-data';
 import DemoModeBanner from '@/components/DemoModeBanner';
+import ChaingptExplanationPanel from '@/components/ChaingptExplanationPanel';
+import ChaingptCopilotModal from '@/components/ChaingptCopilotModal';
+import { useMemo, useState } from 'react';
+import type { MarketSignal } from '@/src/chaingpt/domain/markets/types';
 
 const client = new PredictorIQClient({
   apiUrl: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 });
 
 export default function Top10Page() {
+  const [copilotOpen, setCopilotOpen] = useState(false);
+  const [copilotSignal, setCopilotSignal] = useState<MarketSignal | null>(null);
+  const [copilotTitle, setCopilotTitle] = useState<string>('');
+
   const { data, loading, error } = useMockData<Top10Response>(
     () => client.getDailyTop10(),
     mockTop10Data
@@ -77,15 +85,62 @@ export default function Top10Page() {
                 <div className="text-xs text-gray-500">
                   Confidence: {(item.confidence * 100).toFixed(0)}%
                 </div>
-                <a
-                  href={item.market.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-blue-600 hover:text-blue-800"
-                >
-                  View Market →
-                </a>
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const liquidityLevel =
+                        item.market.liquidity >= 300000 ? 'high' : item.market.liquidity >= 120000 ? 'medium' : 'low';
+
+                      const signal: MarketSignal = {
+                        marketId: item.market.market_id,
+                        title: item.market.title,
+                        url: item.market.url,
+                        venue: item.market.platform,
+                        impliedProbMarket: item.market.mid_price,
+                        impliedProbOptions: item.market.mid_price,
+                        mispricing: 0,
+                        capitalQualityYes: 'medium',
+                        capitalQualityNo: 'medium',
+                        anomalyScore: 0.2,
+                        liquidityLevel,
+                      };
+
+                      setCopilotSignal(signal);
+                      setCopilotTitle(item.market.title);
+                      setCopilotOpen(true);
+                    }}
+                    className="text-sm font-medium text-gray-700 hover:text-gray-900"
+                  >
+                    Ask
+                  </button>
+                  <a
+                    href={item.market.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-blue-600 hover:text-blue-800"
+                  >
+                    View Market →
+                  </a>
+                </div>
               </div>
+
+              <ChaingptExplanationPanel
+                signal={{
+                  marketId: item.market.market_id,
+                  title: item.market.title,
+                  url: item.market.url,
+                  venue: item.market.platform,
+                  impliedProbMarket: item.market.mid_price,
+                  impliedProbOptions: item.market.mid_price,
+                  mispricing: 0,
+                  capitalQualityYes: 'medium',
+                  capitalQualityNo: 'medium',
+                  anomalyScore: 0.2,
+                  liquidityLevel:
+                    item.market.liquidity >= 300000 ? 'high' : item.market.liquidity >= 120000 ? 'medium' : 'low',
+                }}
+              />
             </div>
           ))}
         </div>
@@ -95,6 +150,14 @@ export default function Top10Page() {
           Analyzed {data.metadata.total_markets_analyzed} markets
         </div>
       </div>
+      {copilotSignal && (
+        <ChaingptCopilotModal
+          open={copilotOpen}
+          onClose={() => setCopilotOpen(false)}
+          signal={copilotSignal}
+          title={copilotTitle}
+        />
+      )}
     </>
   );
 }
