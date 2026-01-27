@@ -15,22 +15,22 @@ This page explains how ChainGPT is integrated in this branch.
 flowchart LR
   classDef data fill:#FEF9C3,stroke:#CA8A04,color:#422006,stroke-width:2px
   classDef server fill:#DCFCE7,stroke:#16A34A,color:#052E16,stroke-width:2px
-  classDef chaingpt fill:#FFE4E6,stroke:#E11D48,color:#4C0519,stroke-width:2px
+  classDef llm fill:#FFE4E6,stroke:#E11D48,color:#4C0519,stroke-width:2px
   classDef output fill:#E0F2FE,stroke:#0284C7,color:#0F172A,stroke-width:2px
   classDef agent fill:#F3E8FF,stroke:#9333EA,color:#3B0764,stroke-width:2px
 
   A[PredictorIQ Core]:::data
   B[Next.js Server]:::server
-  C[ChainGPT Web3 Chat API]:::chaingpt
+  C[Web3 Chat API]:::llm
   D[Browser UI]:::output
   E[AgenticOS]:::agent
   F[X / Twitter]:::output
 
   A -->|MarketSignal JSON| B
-  B -->|Prompt| C
-  C -->|Text| B
-  B -->|Response| D
-  B -.->|Tweet text via webhook| E
+  B -->|Prompt + Context| C
+  C -->|Generated Text| B
+  B -->|Explanation / Q&A / Help| D
+  B -.->|Tweet text| E
   E -.->|Auto post| F
 ```
 
