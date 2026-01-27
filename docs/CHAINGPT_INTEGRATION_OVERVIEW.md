@@ -8,7 +8,7 @@ This page explains how ChainGPT is integrated in this branch.
 
 **What this diagram shows:**
 - PredictorIQ produces structured market signals.
-- ChainGPT Web3 Chat API generates human-readable explanations.
+- ChainGPT Web3 LLM generates human-readable explanations.
 - AgenticOS is a Web3 AI agent framework that can receive signals and post to X/Twitter.
 
 ```mermaid
@@ -21,7 +21,7 @@ flowchart LR
 
   A[PredictorIQ Core]:::data
   B[Next.js Server]:::server
-  C[Web3 Chat API]:::llm
+  C[ChainGPT Web3 LLM]:::llm
   D[Browser UI]:::output
   E[AgenticOS]:::agent
   F[X / Twitter]:::output
@@ -44,7 +44,7 @@ flowchart LR
 
 | Product | What it does | How we use it | Status |
 |---------|--------------|---------------|--------|
-| **Web3 Chat API** | Text generation from prompts | Generate explanations, Q&A answers, help text, research notes, tweet drafts | Implemented |
+| **Web3 LLM** | Text generation from prompts | Generate explanations, Q&A answers, help text, research notes, tweet drafts | Implemented |
 | **AgenticOS** | Open-source AI agent framework for X/Twitter | Receive our tweet text via webhook, auto-post to X | Planned |
 
 ### About AgenticOS
