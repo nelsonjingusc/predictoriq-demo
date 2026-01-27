@@ -9,8 +9,7 @@ This page explains how ChainGPT is integrated in this branch.
 **What this diagram shows:**
 - PredictorIQ produces structured market signals.
 - ChainGPT Web3 Chat API generates human-readable explanations.
-- AgenticOS is a planned channel for automated social posting.
-- All ChainGPT calls happen server-side. The browser never sees API keys.
+- AgenticOS is a Web3 AI agent framework that can receive signals and post to X/Twitter.
 
 ```mermaid
 flowchart LR
@@ -18,30 +17,54 @@ flowchart LR
   classDef server fill:#DCFCE7,stroke:#16A34A,color:#052E16,stroke-width:2px
   classDef chaingpt fill:#FFE4E6,stroke:#E11D48,color:#4C0519,stroke-width:2px
   classDef output fill:#E0F2FE,stroke:#0284C7,color:#0F172A,stroke-width:2px
-  classDef future fill:#F3E8FF,stroke:#9333EA,color:#3B0764,stroke-width:2px
+  classDef agent fill:#F3E8FF,stroke:#9333EA,color:#3B0764,stroke-width:2px
 
   A[PredictorIQ Core]:::data
   B[Next.js Server]:::server
   C[ChainGPT Web3 Chat API]:::chaingpt
   D[Browser UI]:::output
-  E[AgenticOS - planned]:::future
+  E[AgenticOS]:::agent
+  F[X / Twitter]:::output
 
   A -->|MarketSignal JSON| B
   B -->|Prompt| C
   C -->|Text| B
   B -->|Response| D
-  B -.->|Tweet text| E
+  B -.->|Tweet text via webhook| E
+  E -.->|Auto post| F
 ```
 
-**Key point:** ChainGPT does NOT do math or pricing. It only interprets and explains.
+**Notes:**
+- Solid lines = implemented now
+- Dashed lines = planned integration
 
 ---
 
-## 2. Feature Flow
+## 2. ChainGPT Products We Use
+
+| Product | What it does | How we use it | Status |
+|---------|--------------|---------------|--------|
+| **Web3 Chat API** | Text generation from prompts | Generate explanations, Q&A answers, help text, research notes, tweet drafts | Implemented |
+| **AgenticOS** | Open-source AI agent framework for X/Twitter | Receive our tweet text via webhook, auto-post to X | Planned |
+
+### About AgenticOS
+
+AgenticOS is not just a Twitter bot. It is a **Web3 AI agent framework** that can:
+- Receive signals via **scheduled cron jobs** or **real-time webhooks**
+- Access **on-chain data** from BNB Chain and other networks
+- Subscribe to **ChainGPT Web3 news feeds** by category
+- Generate content using **ChainGPT Web3 Chat API**
+- Post autonomously to **X/Twitter** with OAuth 2.0 security
+
+Typical use cases: DAO treasury bots, crypto marketing automation, DePIN community updates, real-time market alerts.
+
+---
+
+## 3. Feature Flow
 
 **What this diagram shows:**
 - UC1 to UC6 are the six features we built.
-- Each feature connects to a server endpoint and produces a specific output.
+- Each connects to a server endpoint and produces a specific output.
 
 ```mermaid
 flowchart LR
@@ -67,17 +90,6 @@ flowchart LR
 | UC4 | Anomaly Alert Tweet | Generates alert tweet when unusual activity detected | /chaingpt preview |
 | UC5 | Product Help | Explains PredictorIQ metrics and concepts | Floating help widget |
 | UC6 | Daily Research Note | Generates Markdown summary of top markets | /chaingpt preview |
-
----
-
-## 3. ChainGPT APIs Used
-
-| API | What we use it for | Status |
-|-----|-------------------|--------|
-| **Web3 Chat API** | All text generation - explanations, Q&A, help, notes, tweets | Implemented |
-| **AgenticOS** | Automated posting to X/Twitter | Planned - not yet wired |
-
-Web3 Chat API endpoint: `POST https://api.chaingpt.org/chat/stream`
 
 ---
 
