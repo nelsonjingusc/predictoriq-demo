@@ -1,19 +1,14 @@
-# PredictorIQ Client (Open Source)
+# PredictorIQ Client
 
-**The Morningstar for Prediction Markets** - AI-powered analytics dashboard for Kalshi, Polymarket, and Limitless.
+This is the Next.js client for the PredictorIQ demo, built to run in **demo mode** (mock data) by default.
 
-## Features
+This branch also includes a **server-side ChainGPT integration** (via Next.js API routes) used to turn structured signals into clear explanations and agent-ready text. The client never receives model credentials.
 
-- **📊 Top10 Daily Recommendations**: AI-ranked market opportunities
-- **⚡ Cross-Platform Arbitrage Scanner**: Real-time price spread detection
-- **🎯 Trading Strategies**: Personalized strategy templates
-- **💡 Market Creation Ideas**: Data-driven suggestions for new markets
-- **🤖 Three AI Agents**:
-  - Alpha Scout: Opportunity discovery
-  - Portfolio Guardian: Risk monitoring
-  - Research Autopilot: Automated research reports
-- **📈 Greek-Style Risk Metrics**: Binary event analytics
-- **🔌 Developer API**: Easy integration with your apps
+## What’s Included (Client)
+
+- **Top10 page** with explanation + Q&A entry points
+- **Help widget** for onboarding and metric explanations
+- **ChainGPT preview page** to generate daily notes and social text (text-only; no posting)
 
 ## Quick Start
 
@@ -21,25 +16,27 @@
 
 - Node.js 18+
 - npm or yarn
-- PredictorIQ server running (or use public API)
 
 ### Installation
 
 ```bash
-# Install dependencies
 npm install
 
-# Copy environment template
-cp .env.example .env.local
-
-# Edit .env.local with your API endpoint
-# NEXT_PUBLIC_API_URL=http://localhost:8000
-
-# Run development server
+# Run development server (demo mode recommended)
 npm run dev
 ```
 
 Visit [http://localhost:3000](http://localhost:3000)
+
+## Environment
+
+Client-side:
+- `NEXT_PUBLIC_DEMO_MODE=true` (recommended)
+- `NEXT_PUBLIC_API_URL` (only needed for live backend mode)
+
+Server-side (optional, for live ChainGPT calls):
+- `CHAINGPT_API_KEY`
+- `CHAINGPT_MODEL` (default: `general_assistant`)
 
 ## Project Structure
 
@@ -51,11 +48,13 @@ predictoriq-client/
 │   ├── strategies/        # Trading strategies
 │   ├── ideas/             # Market ideas
 │   ├── agents/            # AI agents feed
+│   ├── chaingpt/          # ChainGPT preview page
 │   ├── pricing/           # Pricing tiers
 │   ├── api/               # API documentation
 │   └── waitlist/          # Early access signup
 ├── components/            # React components
 ├── packages/sdk/          # PredictorIQ SDK
+└── src/chaingpt/           # ChainGPT domain + server wrapper
 └── public/               # Static assets
 ```
 
@@ -88,6 +87,7 @@ const report = await client.runResearch({
 - `/strategies` - Trading strategy templates
 - `/ideas` - Market creation ideas
 - `/agents` - AI agent message feed
+- `/chaingpt` - ChainGPT preview (text generation + daily note)
 - `/pricing` - Subscription plans
 - `/api` - API documentation & examples
 - `/waitlist` - Early access signup

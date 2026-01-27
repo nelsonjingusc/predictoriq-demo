@@ -6,6 +6,33 @@
 
 This repository contains the public demo dashboard and docs for **PredictorIQ**, a prediction market intelligence and agent infrastructure project.
 
+## ChainGPT Integration (This Branch)
+
+This branch integrates **ChainGPT** as a reasoning and communication layer on top of PredictorIQ’s existing, deterministic market analysis.
+
+- PredictorIQ’s core pricing/scoring/anomaly logic remains **code-based and deterministic**.
+- ChainGPT is used to **interpret structured signals** and produce plain-English explanations for users and agent workflows.
+- All ChainGPT calls are made **server-side** via Next.js API routes. The client never sees model credentials.
+
+### What’s Added
+
+- **Server-side ChainGPT integration** via API routes (no secrets exposed to the browser)
+- **Market explanation panel** that turns structured signals into short rationales
+- **In-app Q&A / research copilot** for follow-up questions grounded in the same structured context
+- **Help / onboarding chat** for metrics and system concepts using project-specific context
+- **Agent-facing text generation endpoints** (daily digest text, anomaly alert text, daily research note)
+
+### What This Branch Does NOT Do
+
+- No trading execution, no wallets, no private keys
+- No replacing deterministic calculations with model-generated math
+- No autonomous trading system
+
+### Next Planned Work
+
+- Cleaner structured inputs and prompt guardrails (validation, error handling, rate limits, caching)
+- Optional wiring to ChainGPT AgenticOS for external posting workflows (execution remains external and optional)
+
 ## What's in This Repo
 
 - **Frontend UI** (`client/`): Complete Next.js dashboard showcasing the product interface
@@ -53,6 +80,8 @@ NEXT_PUBLIC_API_URL=http://localhost:8000  # Your API URL
 - **[Demo Guide](docs/DEMO_GUIDE.md)**: Step-by-step walkthrough of the UI
 - **[Product Overview](docs/PRODUCT_OVERVIEW.md)**: High-level product vision and features
 - **[Architecture Overview](docs/ARCHITECTURE_OVERVIEW.md)**: System design and technical architecture
+- **[ChainGPT Integration Overview](docs/CHAINGPT_INTEGRATION_OVERVIEW.md)**: One-page technical integration overview
+- **[ChainGPT Integration Status + Plan](docs/chaingpt-integration-v1-current-status-and-work-plan.md)**: Requirements, current status, and next steps
 
 ## Project Structure
 
@@ -65,6 +94,7 @@ predictoriq-demo/
 │   │   ├── strategies/    # Trading strategies
 │   │   ├── ideas/         # Market creation ideas
 │   │   ├── agents/        # AI agents feed
+│   │   ├── chaingpt/      # ChainGPT preview page
 │   │   └── ...
 │   ├── packages/sdk/      # TypeScript SDK
 │   └── components/        # React components

@@ -6,6 +6,7 @@ This directory contains the product documentation for PredictorIQ.
 
 - **[Product Overview](PRODUCT_OVERVIEW.md)**: Product vision, features, and capabilities
 - **[Architecture Overview](ARCHITECTURE_OVERVIEW.md)**: Technical architecture and system design
+- **[ChainGPT Integration Overview](CHAINGPT_INTEGRATION_OVERVIEW.md)**: One-page technical integration overview (architecture + functionality)
 - **[Demo Guide](DEMO_GUIDE.md)**: Step-by-step walkthrough of the demo
 - **[Quick Start](QUICK_START.md)**: 5-minute guide to get started
 - **[Demo Mode](DEMO_MODE.md)**: Demo mode configuration guide
