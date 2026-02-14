@@ -1,6 +1,14 @@
 import { chaingptChatBlob } from '@/src/chaingpt/lib/chaingptClient';
 import type { WalletStats } from './types';
 
+interface StrategyAnalysis {
+  strategy: string;
+  riskAssessment: {
+    strengths: string[];
+    risks: string[];
+  };
+}
+
 export async function generateWalletSummary(stats: WalletStats): Promise<string> {
   const prompt = buildWalletSummaryPrompt(stats);
   const answer = await chaingptChatBlob({
@@ -8,6 +16,35 @@ export async function generateWalletSummary(stats: WalletStats): Promise<string>
     chatHistory: 'off',
   });
   return answer.trim();
+}
+
+export async function analyzeStrategy(stats: WalletStats): Promise<StrategyAnalysis> {
+  try {
+    const response = await fetch('/api/chaingpt/analyze-trading-strategy', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ walletStats: stats }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Strategy analysis failed: ${response.statusText}`);
+    }
+
+    const analysis = await response.json();
+    return analysis;
+  } catch (error) {
+    console.error('[Wallet Summary] Strategy analysis error:', error);
+    // Return fallback analysis
+    return {
+      strategy: 'Unable to analyze trading strategy at this time. Please try again later.',
+      riskAssessment: {
+        strengths: ['Analysis temporarily unavailable'],
+        risks: ['Analysis temporarily unavailable']
+      }
+    };
+  }
 }
 
 function buildWalletSummaryPrompt(stats: WalletStats): string {

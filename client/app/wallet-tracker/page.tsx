@@ -30,6 +30,8 @@ export default function WalletTrackerPage() {
   const [stats, setStats] = useState<any>(null);
   const [summary, setSummary] = useState<string>('');
   const [isRealData, setIsRealData] = useState<boolean>(false);
+  const [strategyAnalysis, setStrategyAnalysis] = useState<any>(null);
+  const [loadingStrategy, setLoadingStrategy] = useState(false);
 
   async function resolveUsername(username: string): Promise<string> {
     try {
@@ -94,6 +96,24 @@ export default function WalletTrackerPage() {
       setStats(json.stats);
       setSummary(json.summary);
       setIsRealData(json.isRealData || false);
+
+      // Fetch strategy analysis
+      setLoadingStrategy(true);
+      try {
+        const strategyRes = await fetch('/api/chaingpt/analyze-trading-strategy', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ walletStats: json.stats }),
+        });
+        if (strategyRes.ok) {
+          const strategyData = await strategyRes.json();
+          setStrategyAnalysis(strategyData);
+        }
+      } catch (err) {
+        console.error('Strategy analysis failed:', err);
+      } finally {
+        setLoadingStrategy(false);
+      }
     } catch (e: any) {
       setError(e?.message || 'Failed to analyze wallet');
       setStats(null);
@@ -337,6 +357,72 @@ export default function WalletTrackerPage() {
               <div className="text-2xl font-bold text-gray-900">{formatCurrency(stats.avgPositionSize, true)}</div>
             </div>
           </div>
+
+          {/* Web3 LLM Strategy Analysis */}
+          {strategyAnalysis && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Trading Strategy Insights */}
+              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-6 shadow-xl border-2 border-purple-200">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-bold text-gray-900">Trading Strategy Insights</h3>
+                  <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full">
+                    <span className="text-xs font-semibold text-white">⚡ Powered by ChainGPT Web3 LLM</span>
+                  </div>
+                </div>
+                {loadingStrategy ? (
+                  <div className="flex items-center justify-center py-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+                  </div>
+                ) : (
+                  <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4">
+                    <p className="text-sm text-gray-700 leading-relaxed">{strategyAnalysis.strategy}</p>
+                  </div>
+                )}
+              </div>
+
+              {/* Risk Assessment */}
+              <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 shadow-xl border-2 border-amber-200">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-bold text-gray-900">Risk Assessment</h3>
+                  <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full">
+                    <span className="text-xs font-semibold text-white">⚡ Powered by ChainGPT Web3 LLM</span>
+                  </div>
+                </div>
+                {loadingStrategy ? (
+                  <div className="flex items-center justify-center py-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-amber-600"></div>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {/* Strengths */}
+                    <div className="bg-green-50 rounded-xl p-4 border border-green-200">
+                      <div className="text-xs font-semibold text-green-700 mb-2">✓ Strengths</div>
+                      <ul className="space-y-1">
+                        {strategyAnalysis.riskAssessment.strengths.map((strength: string, idx: number) => (
+                          <li key={idx} className="text-sm text-gray-700 flex items-start gap-2">
+                            <span className="text-green-600 mt-0.5">•</span>
+                            <span>{strength}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    {/* Risks */}
+                    <div className="bg-amber-50 rounded-xl p-4 border border-amber-300">
+                      <div className="text-xs font-semibold text-amber-800 mb-2">⚠ Risk Factors</div>
+                      <ul className="space-y-1">
+                        {strategyAnalysis.riskAssessment.risks.map((risk: string, idx: number) => (
+                          <li key={idx} className="text-sm text-gray-700 flex items-start gap-2">
+                            <span className="text-amber-600 mt-0.5">•</span>
+                            <span>{risk}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
 
           {/* Trading Volume */}
           <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-6 shadow-xl border border-gray-200">
