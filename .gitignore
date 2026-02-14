@@ -2,3 +2,9 @@ client/node_modules/
 client/.next/
 .DS_Store
 *.log
+
+# Temporary analysis and debug files
+WALLET_ANALYSIS.md
+debug_*.js
+debug_*.ts
+*_output.txt

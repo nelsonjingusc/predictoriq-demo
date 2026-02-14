@@ -9,7 +9,7 @@ export default function HelpChatWidget() {
   const [open, setOpen] = useState(false);
   const [question, setQuestion] = useState('');
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', text: 'Hi — ask me about metrics, pages, or how to use the demo.' },
+    { role: 'assistant', text: 'Hi! New to prediction markets? Ask me anything — how they work, how to get started, what strategies work best, or any questions about trading.' },
   ]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -46,7 +46,10 @@ export default function HelpChatWidget() {
       {open && (
         <div className="mb-3 w-[min(360px,calc(100vw-2.5rem))] rounded-xl border border-gray-200 bg-white shadow-xl overflow-hidden">
           <div className="flex items-center justify-between px-4 py-3 bg-gray-900">
-            <div className="text-sm font-semibold text-white">Help</div>
+            <div>
+              <div className="text-sm font-semibold text-white">Prediction Market Guide</div>
+              <div className="text-xs text-blue-300">powered by ChainGPT Web3 LLM</div>
+            </div>
             <button
               type="button"
               onClick={() => setOpen(false)}
@@ -114,7 +117,7 @@ export default function HelpChatWidget() {
         onClick={() => setOpen((v) => !v)}
         className="rounded-full bg-gray-900 text-white px-4 py-3 shadow-lg hover:bg-gray-800 text-sm font-semibold"
       >
-        {open ? 'Hide Help' : 'Help'}
+        {open ? 'Close Guide' : 'Need Help?'}
       </button>
     </div>
   );

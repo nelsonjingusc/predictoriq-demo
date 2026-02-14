@@ -73,7 +73,10 @@ export default function ChaingptCopilotModal({ open, onClose, signal, title }: P
       <div className="absolute left-1/2 top-1/2 w-[min(720px,calc(100vw-2rem))] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white shadow-xl border border-gray-200">
         <div className="flex items-start justify-between p-5 border-b border-gray-200">
           <div>
-            <div className="text-sm font-semibold text-gray-900">Ask PredictorIQ</div>
+            <div className="text-sm font-semibold text-gray-900 flex items-center gap-2">
+              <span>Ask PredictorIQ</span>
+              <span className="text-xs font-normal text-blue-600">powered by ChainGPT</span>
+            </div>
             <div className="text-xs text-gray-500">
               Market: <span className="font-medium text-gray-700">{title}</span>
             </div>

@@ -40,12 +40,21 @@ This branch integrates **ChainGPT** as a reasoning and communication layer on to
 - **Documentation** (`docs/`): Product overview, architecture, and demo guide
 - **Mock Data**: Realistic sample data for all features
 
-## Quick Start
+## Quick Start (ChainGPT PoC)
 
 ```bash
-# One-click start (recommended)
-./start-demo.sh
+# One-click start for ChainGPT PoC (recommended)
+./start-chaingpt-demo.sh
 ```
+
+This will:
+- Create `.env.local` with demo mode enabled
+- Install dependencies if needed
+- Start the dev server at `http://localhost:3000`
+
+**Pages to visit:**
+- `/top10` — Market explanation + copilot
+- `/chaingpt` — Wallet summary + content generation
 
 Or manually:
 ```bash
@@ -77,6 +86,7 @@ NEXT_PUBLIC_API_URL=http://localhost:8000  # Your API URL
 - **[Quick Start](docs/QUICK_START.md)**: 5-minute guide to get the demo running
 
 **Detailed Documentation:**
+- **[ChainGPT PoC Overview](docs/CHAIN_GPT_POC_OVERVIEW.md)**: **← Start here for PoC walkthrough**
 - **[Demo Guide](docs/DEMO_GUIDE.md)**: Step-by-step walkthrough of the UI
 - **[Product Overview](docs/PRODUCT_OVERVIEW.md)**: High-level product vision and features
 - **[Architecture Overview](docs/ARCHITECTURE_OVERVIEW.md)**: System design and technical architecture

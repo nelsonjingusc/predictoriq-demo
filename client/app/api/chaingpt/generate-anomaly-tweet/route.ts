@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     const reason = body.reason?.trim() || `Anomaly score is ${body.market.anomalyScore.toFixed(2)}.`;
 
     if (isDemoModeServer() && !process.env.CHAINGPT_API_KEY) {
-      const tweet = demoAnomalyTweet(body.market, reason);
+      const tweet = demoAnomalyTweet(body.market.title, reason);
       return NextResponse.json({ tweet, demo: true });
     }
 

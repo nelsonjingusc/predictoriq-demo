@@ -8,12 +8,13 @@ export default function Navigation() {
 
   const navItems = [
     { href: '/', label: 'Home' },
+    { href: '/guide', label: 'Beginner Guide' },
+    { href: '/wallet-tracker', label: 'Wallet Tracker' },
     { href: '/top10', label: 'Top10' },
     { href: '/arbitrage', label: 'Arbitrage' },
     { href: '/strategies', label: 'Strategies' },
     { href: '/ideas', label: 'Ideas' },
     { href: '/agents', label: 'Agents' },
-    { href: '/chaingpt', label: 'ChainGPT' },
     { href: '/pricing', label: 'Pricing' },
     { href: '/api', label: 'API' },
     { href: '/waitlist', label: 'Waitlist' },

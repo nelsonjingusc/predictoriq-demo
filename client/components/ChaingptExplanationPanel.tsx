@@ -63,11 +63,12 @@ export default function ChaingptExplanationPanel({ signal }: Props) {
         aria-expanded={open}
       >
         <div>
-          <div className="text-sm font-semibold text-gray-900">
-            Explanation powered by ChainGPT
+          <div className="text-sm font-semibold text-gray-900 flex items-center gap-2">
+            <span>Explanation</span>
+            <span className="text-xs font-normal text-blue-600">powered by ChainGPT Web3 LLM</span>
           </div>
           <div className="text-xs text-gray-500">
-            Short, plain-English summary based on structured signals.
+            Plain-English summary based on structured signals.
           </div>
         </div>
         <div className="text-sm text-gray-500">{open ? 'Hide' : 'Show'}</div>
