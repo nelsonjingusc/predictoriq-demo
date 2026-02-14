@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { CustomConnectButton } from './CustomConnectButton';
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -21,26 +23,33 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="bg-white shadow-sm">
+    <nav className="bg-white shadow-sm border-b border-gray-100">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="text-xl font-bold text-blue-600">
-            PredictorIQ
-          </Link>
-          <div className="flex space-x-6">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`text-sm font-medium transition-colors ${
-                  pathname === item.href
+          <div className="flex items-center space-x-8">
+            <Link href="/" className="text-xl font-bold text-blue-600">
+              PredictorIQ
+            </Link>
+            <div className="flex space-x-6">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`text-sm font-medium transition-colors ${pathname === item.href
                     ? 'text-blue-600'
                     : 'text-gray-600 hover:text-blue-600'
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+                    }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div className="flex items-center">
+            {/* Custom styled ConnectButton wrapper */}
+            <div className="connect-wallet-wrapper">
+              <CustomConnectButton />
+            </div>
           </div>
         </div>
       </div>
