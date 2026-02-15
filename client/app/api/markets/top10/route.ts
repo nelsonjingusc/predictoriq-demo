@@ -229,19 +229,42 @@ export async function GET(request: NextRequest) {
         }
 
         // 4. Sort by volume_24h (descending) and take top 10
-        const top10 = filteredMarkets
+        const top10Initial = filteredMarkets
             .sort((a, b) => b.volume_24h - a.volume_24h)
-            .slice(0, 10)
-            .map((market, index) => ({
-                ...market,
-                rank: index + 1,
-            }));
+            .slice(0, 10);
 
-        // 5. Extract unique categories from all markets
+        // 5. Apply real AI summaries for Rank 1-3 if API key is present AND auto-AI is enabled
+        const hasKey = !!process.env.CHAINGPT_API_KEY;
+        const autoAiEnabled = process.env.ENABLE_AUTO_AI === 'true';
+        console.log(`[Top10 API] AI Key: ${hasKey}, Auto-AI: ${autoAiEnabled}`);
+
+        const top10 = await Promise.all(top10Initial.map(async (market, index) => {
+            const rank = index + 1;
+            let ai_summary = market.ai_summary;
+
+            // Only use real AI for Top 3 AND if we have a key AND explicit opt-in
+            if (rank <= 3 && hasKey && autoAiEnabled) {
+                try {
+                    const { generateMarketChipSummary } = await import('@/src/chaingpt/domain/markets/explanationService');
+                    ai_summary = await generateMarketChipSummary(market.title, market.mid_price, market.outcomeLabel || 'Outcome');
+                    console.log(`[Top10 API] Generated real AI summary for Rank ${rank}: ${market.title}`);
+                } catch (e) {
+                    console.warn(`[Top10 API] Failed to generate real AI summary for Rank ${rank}, falling back to mock.`);
+                }
+            }
+
+            return {
+                ...market,
+                rank,
+                ai_summary
+            };
+        }));
+
+        // 6. Extract unique categories from all markets
         const categories = [...new Set(allMarkets.map(m => m.category))]
             .sort();
 
-        // 6. Build response
+        // 7. Build response
         const response: Top10Response = {
             items: top10,
             categories,

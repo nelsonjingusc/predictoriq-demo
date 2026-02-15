@@ -39,20 +39,31 @@ export async function chaingptChatBlob(opts: ChaingptChatOptions): Promise<strin
     }),
   });
 
-  // Common failure modes:
-  // 401 -> missing/bad key
-  // 402/403 -> out of credits
+  const text = await safeReadText(res);
+
   if (!res.ok) {
-    const text = await safeReadText(res);
     throw new Error(`ChainGPT request failed (${res.status}): ${text || res.statusText}`);
   }
 
-  const json = (await res.json()) as ChaingptBlobResponse;
-  if (!('status' in json) || json.status !== true) {
-    throw new Error('ChainGPT returned an unexpected response');
+  // Attempt to parse as JSON first (modern/SDK behavior)
+  try {
+    const json = JSON.parse(text) as ChaingptBlobResponse;
+    if (json && typeof json === 'object' && 'status' in json) {
+      if (json.status === true) {
+        return (json.data?.bot ?? '').toString();
+      } else {
+        throw new Error(json.message || 'ChainGPT returned status: false');
+      }
+    }
+  } catch (e) {
+    // If not JSON or doesn't match expected structure, but request was OK,
+    // assume the text itself is the response (simple/legacy behavior)
+    if (text.trim()) {
+      return text.trim();
+    }
   }
 
-  return (json.data?.bot ?? '').toString();
+  throw new Error('ChainGPT returned an empty or unexpected response');
 }
 
 async function safeReadText(res: Response): Promise<string> {

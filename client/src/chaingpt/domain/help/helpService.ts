@@ -29,8 +29,7 @@ export async function helpAnswer(question: string, sessionId?: string): Promise<
 
   const answer = await chaingptChatBlob({
     question: prompt,
-    chatHistory: 'on',
-    sdkUniqueId: sessionId,
+    chatHistory: 'off',
   });
 
   return answer.trim();

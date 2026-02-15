@@ -16,13 +16,18 @@ export interface MarketSignal {
   anomalyScore: number; // 0..1
   liquidityLevel: LiquidityLevel;
 }
-
 export type MarketStance = 'long_yes' | 'long_no' | 'neutral' | 'avoid';
 
-export interface MarketExplanation {
+export type MarketExplanation = {
   stance: MarketStance;
   summary: string; // 2–4 sentences
-}
+  details?: {
+    valuation: string;
+    smart_money: string;
+    verdict: string;
+    detailed_analysis?: string;
+  };
+};
 
 export interface ResearchNote {
   generatedAt: string; // ISO timestamp

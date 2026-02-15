@@ -35,13 +35,13 @@ export async function POST(req: NextRequest) {
     }
 
     // Generate summary using ChainGPT or demo fallback
-    let summary: string;
+    let summaryData: any;
 
-    if (!ENV.CHAINGPT_API_KEY || isDemoModeServer()) {
-      summary = demoWalletSummary(cleanedAddress);
+    if (isDemoModeServer() && !ENV.CHAINGPT_API_KEY) {
+      summaryData = demoWalletSummary(cleanedAddress);
     } else {
       try {
-        summary = await generateWalletSummary(stats);
+        summaryData = await generateWalletSummary(stats);
       } catch (err: any) {
         console.error('ChainGPT wallet summary error:', err);
 
@@ -52,14 +52,16 @@ export async function POST(req: NextRequest) {
           return NextResponse.json({ error: 'ChainGPT credits exhausted' }, { status: 402 });
         }
 
-        summary = demoWalletSummary(cleanedAddress);
+        summaryData = demoWalletSummary(cleanedAddress);
       }
     }
 
     return NextResponse.json({
       address: stats.address,
       stats,
-      summary,
+      summary: summaryData.summary || summaryData, // handle legacy string or new object
+      strategy: summaryData.strategy || '',
+      riskAssessment: summaryData.riskAssessment || { strengths: [], risks: [] },
       isRealData,
     });
   } catch (err: any) {
