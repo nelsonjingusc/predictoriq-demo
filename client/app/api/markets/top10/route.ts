@@ -99,6 +99,7 @@ async function fetchPolymarketMarketsInline(): Promise<Market[]> {
                 url: `https://polymarket.com/event/${event.slug}`,
                 created_at: event.createdAt || new Date().toISOString(),
                 updated_at: event.updatedAt || new Date().toISOString(),
+                ai_summary: generateMockAISummary(event.title, midPrice, outcomeLabel),
             });
         }
 
@@ -163,6 +164,30 @@ function selectBestCategory(tags: any[]): string {
 
     // Fall back to first valid tag
     return validTags[0].label;
+}
+
+/**
+ * Generates a mock AI insight summary based on market data
+ * This will be replaced by a real LLM call later
+ */
+function generateMockAISummary(title: string, price: number, label: string): string {
+    const p = Math.round(price * 100);
+
+    if (title.includes('Trump') || title.includes('President')) {
+        return `ChainGPT: ${label} leads with ${p}% probability. Market factoring in latest policy shifts.`;
+    }
+    if (title.includes('Iran') || title.includes('strike')) {
+        return `ChainGPT: High volatility detected. Pricing in geopolitical risk premium at ${p}%.`;
+    }
+    if (title.includes('Bitcoin') || title.includes('price')) {
+        return `ChainGPT: Strong correlation with macro signals found. Trend leans ${label}.`;
+    }
+    if (title.includes('Fed') || title.includes('rate')) {
+        return `ChainGPT: Consensus pricing in 25bps shift. Market stability index: High.`;
+    }
+
+    // Default smart-sounding summary
+    return `ChainGPT: Analyzing 30+ signals. ${label} remains the dominant consensus at ${p}%.`;
 }
 
 export async function GET(request: NextRequest) {

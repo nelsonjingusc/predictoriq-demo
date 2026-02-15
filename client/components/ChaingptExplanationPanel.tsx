@@ -5,6 +5,8 @@ import type { MarketExplanation, MarketSignal } from '@/src/chaingpt/domain/mark
 
 type Props = {
   signal: MarketSignal;
+  isOpen?: boolean;
+  onToggle?: () => void;
 };
 
 function stanceLabel(stance: MarketExplanation['stance']): string {
@@ -21,11 +23,14 @@ function stanceLabel(stance: MarketExplanation['stance']): string {
   }
 }
 
-export default function ChaingptExplanationPanel({ signal }: Props) {
-  const [open, setOpen] = useState(false);
+export default function ChaingptExplanationPanel({ signal, isOpen, onToggle }: Props) {
+  const [internalOpen, setInternalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<MarketExplanation | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  const isPanelOpen = isOpen !== undefined ? isOpen : internalOpen;
+  const togglePanel = onToggle || (() => setInternalOpen((v) => !v));
 
   const payload = useMemo(() => ({ signal }), [signal]);
 
@@ -58,9 +63,9 @@ export default function ChaingptExplanationPanel({ signal }: Props) {
     <div className="mt-4 border border-gray-200 rounded-lg bg-white">
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={togglePanel}
         className="w-full flex items-center justify-between px-4 py-3 text-left"
-        aria-expanded={open}
+        aria-expanded={isPanelOpen}
       >
         <div>
           <div className="text-sm font-semibold text-gray-900 flex items-center gap-2">
@@ -71,50 +76,53 @@ export default function ChaingptExplanationPanel({ signal }: Props) {
             Plain-English summary based on structured signals.
           </div>
         </div>
-        <div className="text-sm text-gray-500">{open ? 'Hide' : 'Show'}</div>
+        <div className="text-sm text-gray-500">{isPanelOpen ? 'Hide' : 'Show'}</div>
       </button>
 
-      {open && (
-        <div className="px-4 pb-4">
-          <div className="flex items-center justify-between mb-3">
-            <div className="text-xs text-gray-500">
+      {isPanelOpen && (
+        <div className="px-5 pb-5">
+          <div className="flex items-center justify-between mb-4">
+            <div className="text-sm text-gray-500">
               History: off (single-shot)
             </div>
             <button
               type="button"
               onClick={generate}
               disabled={loading}
-              className="inline-flex items-center rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-gray-800 disabled:opacity-60"
+              className="inline-flex items-center rounded-lg bg-gray-900 px-5 py-2.5 text-sm font-bold text-white shadow-md hover:bg-gray-800 hover:-translate-y-0.5 transition-all disabled:opacity-60 disabled:hover:translate-y-0"
             >
-              {loading ? 'Generating…' : result ? 'Regenerate' : 'Generate'}
+              {loading ? 'Generating…' : result ? 'Regenerate Analysis' : 'Generate Analysis'}
             </button>
           </div>
 
           {error && (
-            <div className="text-sm text-red-700 bg-red-50 border border-red-100 rounded-md p-3">
+            <div className="text-base text-red-700 bg-red-50 border border-red-100 rounded-lg p-4">
               {error}
             </div>
           )}
 
           {result && (
-            <div className="bg-gray-50 border border-gray-200 rounded-md p-3">
-              <div className="flex items-center justify-between mb-2">
-                <div className="text-xs font-semibold text-gray-700">
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 shadow-sm">
+              <div className="flex items-center justify-between mb-3 border-b border-gray-200 pb-2">
+                <div className="text-sm font-bold text-gray-600 uppercase tracking-wider">
                   Stance
                 </div>
-                <div className="text-xs font-semibold text-gray-900">
+                <div className={`text-sm font-black px-3 py-1 rounded-full uppercase tracking-wide
+                  ${result.stance === 'long_no' ? 'bg-red-100 text-red-800' :
+                    result.stance === 'long_yes' ? 'bg-green-100 text-green-800' : 'bg-gray-200 text-gray-800'}`}>
                   {stanceLabel(result.stance)}
                 </div>
               </div>
-              <div className="text-sm text-gray-800 leading-relaxed">
+              <div className="text-lg text-gray-900 leading-relaxed font-medium">
                 {result.summary}
               </div>
             </div>
           )}
 
           {!error && !result && (
-            <div className="text-sm text-gray-600 bg-gray-50 border border-gray-200 rounded-md p-3">
-              Click “Generate” to request an explanation.
+            <div className="text-base text-gray-600 bg-gray-50/50 border-2 border-dashed border-gray-200 rounded-xl p-8 text-center">
+              <p className="mb-2 text-lg font-semibold text-gray-800">Ready to Analyze</p>
+              <p>Click <span className="font-bold text-gray-900">"Generate Analysis"</span> to get a real-time, AI-powered predictive model assessment.</p>
             </div>
           )}
         </div>

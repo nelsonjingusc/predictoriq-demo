@@ -15,6 +15,14 @@ export default function Top10Page() {
   const [data, setData] = useState<Top10Response | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [openExplanations, setOpenExplanations] = useState<Record<string, boolean>>({});
+
+  const toggleExplanation = (marketId: string) => {
+    setOpenExplanations(prev => ({
+      ...prev,
+      [marketId]: !prev[marketId]
+    }));
+  };
 
   // Fetch data when category changes
   useEffect(() => {
@@ -125,9 +133,29 @@ export default function Top10Page() {
                       #{item.rank}
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 leading-tight mb-2 group-hover:text-blue-600 transition-colors">
+                      <h3 className="text-3xl font-bold text-gray-900 leading-tight mb-4 group-hover:text-blue-600 transition-colors">
                         {item.title}
                       </h3>
+
+                      {item.ai_summary && (
+                        <div className="flex items-center gap-2 mb-3">
+                          <button
+                            onClick={() => toggleExplanation(item.market_id)}
+                            className="relative group/ai cursor-pointer text-left focus:outline-none"
+                          >
+                            {/* AI Glow Effect - Warm/Terracotta */}
+                            <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 to-red-500 rounded-full blur opacity-15 group-hover/ai:opacity-30 transition duration-1000 group-hover/ai:duration-200"></div>
+
+                            <div className="relative flex items-center gap-2.5 px-5 py-2.5 bg-orange-50/95 backdrop-blur-md border border-orange-200/60 rounded-full shadow-[0_0_15px_rgba(234,88,12,0.15)] hover:shadow-[0_0_20px_rgba(234,88,12,0.3)] transition-all">
+                              <span className="text-lg">✨</span>
+                              <span className="text-base font-black bg-gradient-to-r from-orange-700 to-red-800 bg-clip-text text-transparent uppercase tracking-wider">
+                                {item.ai_summary}
+                              </span>
+                            </div>
+                          </button>
+                        </div>
+                      )}
+
                       <div className="flex items-center gap-2">
                         <span className="px-3 py-1 bg-blue-50 text-blue-700 text-sm font-bold rounded-full border border-blue-100 uppercase tracking-wide">
                           {item.platform}
@@ -209,6 +237,8 @@ export default function Top10Page() {
 
                 <div className="mt-4">
                   <ChaingptExplanationPanel
+                    isOpen={openExplanations[item.market_id] || false}
+                    onToggle={() => toggleExplanation(item.market_id)}
                     signal={{
                       marketId: item.market_id,
                       title: item.title,

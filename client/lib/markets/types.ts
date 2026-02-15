@@ -16,6 +16,7 @@ export interface Market {
     url: string;
     created_at: string;
     updated_at: string;
+    ai_summary?: string; // AI-generated insight chip
 }
 
 export interface Top10Response {
