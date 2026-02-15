@@ -95,25 +95,14 @@ export default function WalletTrackerPage() {
       if (!res.ok) throw new Error(json?.error || `Request failed (${res.status})`);
       setStats(json.stats);
       setSummary(json.summary);
+      setStats(json.stats);
+      setSummary(json.summary);
+      setStrategyAnalysis({
+        strategy: json.strategy,
+        riskAssessment: json.riskAssessment
+      });
       setIsRealData(json.isRealData || false);
 
-      // Fetch strategy analysis
-      setLoadingStrategy(true);
-      try {
-        const strategyRes = await fetch('/api/chaingpt/analyze-trading-strategy', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ walletStats: json.stats }),
-        });
-        if (strategyRes.ok) {
-          const strategyData = await strategyRes.json();
-          setStrategyAnalysis(strategyData);
-        }
-      } catch (err) {
-        console.error('Strategy analysis failed:', err);
-      } finally {
-        setLoadingStrategy(false);
-      }
     } catch (e: any) {
       setError(e?.message || 'Failed to analyze wallet');
       setStats(null);
