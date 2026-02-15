@@ -102,20 +102,70 @@ export default function ChaingptExplanationPanel({ signal, isOpen, onToggle }: P
           )}
 
           {result && (
-            <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 shadow-sm">
-              <div className="flex items-center justify-between mb-3 border-b border-gray-200 pb-2">
-                <div className="text-sm font-bold text-gray-600 uppercase tracking-wider">
-                  Stance
+            <div className="space-y-4">
+              {/* Verdict Header */}
+              <div className="flex items-center justify-between bg-gray-50 p-4 rounded-xl border border-gray-200">
+                <div className="text-sm font-bold text-gray-500 uppercase tracking-widest">
+                  Algo Verdict
                 </div>
-                <div className={`text-sm font-black px-3 py-1 rounded-full uppercase tracking-wide
-                  ${result.stance === 'long_no' ? 'bg-red-100 text-red-800' :
-                    result.stance === 'long_yes' ? 'bg-green-100 text-green-800' : 'bg-gray-200 text-gray-800'}`}>
-                  {stanceLabel(result.stance)}
+                <div
+                  className={`text-lg font-black px-4 py-1.5 rounded-lg shadow-sm uppercase tracking-wide
+                  ${result.stance === 'long_yes'
+                      ? 'bg-green-100 text-green-900 border border-green-200'
+                      : result.stance === 'long_no'
+                        ? 'bg-red-100 text-red-900 border border-red-200'
+                        : result.stance === 'avoid'
+                          ? 'bg-orange-100 text-orange-900 border border-orange-200'
+                          : 'bg-gray-100 text-gray-800 border border-gray-200'
+                    }`}
+                >
+                  {result.details?.verdict || stanceLabel(result.stance)}
                 </div>
               </div>
-              <div className="text-lg text-gray-900 leading-relaxed font-medium">
-                {result.summary}
+
+              {/* Analysis Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {/* Valuation */}
+                <div className="bg-blue-50/50 p-4 rounded-xl border border-blue-100">
+                  <div className="text-xs font-bold text-blue-800 mb-2 uppercase tracking-wide flex items-center gap-2">
+                    <span className="text-lg">📊</span> Valuation
+                  </div>
+                  <div className="text-sm text-gray-800 leading-relaxed font-medium">
+                    {result.details?.valuation || 'Analysis unavailable.'}
+                  </div>
+                </div>
+
+                {/* Smart Money */}
+                <div className="bg-purple-50/50 p-4 rounded-xl border border-purple-100">
+                  <div className="text-xs font-bold text-purple-800 mb-2 uppercase tracking-wide flex items-center gap-2">
+                    <span className="text-lg">🏦</span> Smart Money
+                  </div>
+                  <div className="text-sm text-gray-800 leading-relaxed font-medium">
+                    {result.details?.smart_money || 'Flow data unavailable.'}
+                  </div>
+                </div>
               </div>
+
+              {/* Deep Dive Analysis */}
+              {result.details?.detailed_analysis && (
+                <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm mt-4">
+                  <div className="text-xs font-bold text-gray-500 mb-3 uppercase tracking-widest flex items-center gap-2 border-b border-gray-100 pb-2">
+                    <span className="text-lg">🧐</span> Analyst Deep Dive
+                  </div>
+                  <div className="text-sm text-gray-800 leading-relaxed font-medium whitespace-pre-wrap">
+                    {result.details.detailed_analysis}
+                  </div>
+                </div>
+              )}
+
+              {/* Legacy/Fallback Summary (if no details) */}
+              {!result.details && (
+                <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 shadow-sm">
+                  <div className="text-lg text-gray-900 leading-relaxed font-medium">
+                    {result.summary}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 

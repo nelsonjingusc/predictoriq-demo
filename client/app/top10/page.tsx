@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import ChaingptExplanationPanel from '@/components/ChaingptExplanationPanel';
-import ChaingptCopilotModal from '@/components/ChaingptCopilotModal';
-import CategorySelector from '@/components/CategorySelector';
+import ChaingptExplanationPanel from '@/components/chaingpt/ChaingptExplanationPanel';
+import ChaingptCopilotModal from '@/components/chaingpt/ChaingptCopilotModal';
+import CategorySelector from '@/components/chaingpt/CategorySelector';
 import type { MarketSignal } from '@/src/chaingpt/domain/markets/types';
 import type { Top10Response } from '@/lib/markets/types';
 
@@ -148,9 +148,19 @@ export default function Top10Page() {
 
                             <div className="relative flex items-center gap-2.5 px-5 py-2.5 bg-orange-50/95 backdrop-blur-md border border-orange-200/60 rounded-full shadow-[0_0_15px_rgba(234,88,12,0.15)] hover:shadow-[0_0_20px_rgba(234,88,12,0.3)] transition-all">
                               <span className="text-lg">✨</span>
-                              <span className="text-base font-black bg-gradient-to-r from-orange-700 to-red-800 bg-clip-text text-transparent uppercase tracking-wider">
-                                {item.ai_summary}
-                              </span>
+                              <div className="flex flex-col">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-base font-black bg-gradient-to-r from-orange-700 to-red-800 bg-clip-text text-transparent uppercase tracking-wider">
+                                    {item.ai_summary}
+                                  </span>
+                                  {item.rank <= 3 && (
+                                    <span className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-green-500/10 border border-green-500/20 text-[10px] font-bold text-green-600 animate-pulse">
+                                      <span className="w-1 h-1 rounded-full bg-green-500"></span>
+                                      LIVE AI
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
                             </div>
                           </button>
                         </div>
@@ -260,13 +270,22 @@ export default function Top10Page() {
           </div>
         )}
 
-        <div className="mt-12 text-sm text-gray-500 text-center bg-white/40 backdrop-blur-sm rounded-xl p-6 border border-white/40">
-          <p>
+        <div className="mt-12 text-sm text-gray-500 text-center bg-white/40 backdrop-blur-sm rounded-xl p-6 border border-white/40 max-w-3xl mx-auto">
+          <div className="mb-4 pb-4 border-b border-gray-200/50">
+            <p className="font-bold text-gray-700 mb-1 flex items-center justify-center gap-2">
+              <span className="text-orange-500">🛡️</span> POC Disclaimer & Credit Management
+            </p>
+            <p className="text-xs leading-relaxed">
+              In this POC version, real-time **ChainGPT Web3 LLM** insights are prioritized for the **top 3 markets** to optimize credit consumption.
+              Markets ranked 4-10 use high-fidelity mock data. Full analysis panels remain available for all markets via manual trigger.
+            </p>
+          </div>
+          <p className="opacity-80">
             Generated at {new Date(data.generated_at).toLocaleString()} |
             Analyzed {data.metadata.total_markets_analyzed} markets |
             Cache age: {data.metadata.cache_age_minutes} minutes
           </p>
-          <p className="mt-2 text-xs font-medium opacity-70">
+          <p className="mt-2 text-xs font-medium opacity-70 italic">
             Platforms Covered: {data.metadata.platforms_covered.join(', ')}
           </p>
         </div>

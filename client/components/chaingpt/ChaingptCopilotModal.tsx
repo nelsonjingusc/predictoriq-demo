@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { MarketSignal } from '@/src/chaingpt/domain/markets/types';
 import { getOrCreateChatSessionId } from '@/components/chaingpt/session';
 
@@ -21,15 +21,53 @@ export default function ChaingptCopilotModal({ open, onClose, signal, title }: P
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const sessionId = useMemo(() => getOrCreateChatSessionId('chaingpt_copilot_session'), []);
 
+  // Load history when opening
   useEffect(() => {
     if (!open) return;
     setError(null);
     setQuestion('');
+
+    // Attempt to load from localStorage
+    try {
+      const key = `chaingpt_chat_${signal.marketId}`;
+      const saved = localStorage.getItem(key);
+      if (saved) {
+        setMessages(JSON.parse(saved));
+      } else {
+        setMessages([]);
+      }
+    } catch (e) {
+      console.error('Failed to load chat history', e);
+      setMessages([]);
+    }
+  }, [open, signal.marketId]);
+
+  // Save history on change
+  useEffect(() => {
+    if (!open || !signal.marketId) return;
+    const key = `chaingpt_chat_${signal.marketId}`;
+    if (messages.length > 0) {
+      localStorage.setItem(key, JSON.stringify(messages));
+    }
+  }, [messages, open, signal.marketId]);
+
+  // Auto-scroll
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, loading, open]);
+
+  function clearHistory() {
+    if (!signal.marketId) return;
+    const key = `chaingpt_chat_${signal.marketId}`;
+    localStorage.removeItem(key);
     setMessages([]);
-  }, [open]);
+    setQuestion('');
+    setError(null);
+  }
 
   async function submit() {
     const q = question.trim();
@@ -81,29 +119,39 @@ export default function ChaingptCopilotModal({ open, onClose, signal, title }: P
               Market: <span className="font-medium text-gray-700">{title}</span>
             </div>
           </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="text-sm font-medium text-gray-500 hover:text-gray-800"
-            aria-label="Close"
-          >
-            Close
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={clearHistory}
+              className="text-xs font-medium text-red-500 hover:text-red-700 px-2 py-1 rounded hover:bg-red-50 transition-colors"
+              title="Clear chat history"
+            >
+              Clear History
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="text-sm font-medium text-gray-500 hover:text-gray-800 px-2 py-1"
+              aria-label="Close"
+            >
+              Close
+            </button>
+          </div>
         </div>
 
         <div className="p-5">
-          <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 h-64 overflow-auto">
+          <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 h-96 overflow-auto flex flex-col">
             {messages.length === 0 ? (
-              <div className="text-sm text-gray-600">
+              <div className="flex-1 flex items-center justify-center text-sm text-gray-500 italic">
                 Ask a question about pricing, arbitrage, liquidity, or what looks unusual.
               </div>
             ) : (
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {messages.map((m, idx) => (
                   <div key={idx} className={m.role === 'user' ? 'text-right' : 'text-left'}>
                     <div
                       className={[
-                        'inline-block max-w-[90%] rounded-lg px-3 py-2 text-sm leading-relaxed',
+                        'inline-block max-w-[90%] rounded-lg px-3 py-2 text-sm leading-relaxed text-left',
                         m.role === 'user'
                           ? 'bg-gray-900 text-white'
                           : 'bg-white border border-gray-200 text-gray-800',
@@ -113,6 +161,21 @@ export default function ChaingptCopilotModal({ open, onClose, signal, title }: P
                     </div>
                   </div>
                 ))}
+
+                {loading && (
+                  <div className="text-left">
+                    <div className="inline-block bg-white border border-gray-200 text-gray-500 rounded-lg px-4 py-3 text-sm leading-relaxed shadow-sm">
+                      <div className="flex items-center gap-2">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                        </span>
+                        <span className="font-medium text-xs tracking-wide">Thinking...</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <div ref={messagesEndRef} />
               </div>
             )}
           </div>
@@ -130,16 +193,17 @@ export default function ChaingptCopilotModal({ open, onClose, signal, title }: P
               onKeyDown={(e) => {
                 if (e.key === 'Enter') submit();
               }}
-              placeholder="Type your question…"
-              className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Type your question..."
+              className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+              autoFocus
             />
             <button
               type="button"
               onClick={submit}
               disabled={loading}
-              className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-60"
+              className="rounded-md bg-blue-600 px-6 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-60 shadow-sm transition-colors"
             >
-              {loading ? 'Sending…' : 'Send'}
+              Send
             </button>
           </div>
 
