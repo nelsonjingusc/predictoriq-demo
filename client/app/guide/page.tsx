@@ -96,6 +96,12 @@ export default function BeginnerGuidePage() {
     }
   }
 
+  function clearHistory() {
+    setMessages([]);
+    setQuestion('');
+    setError(null);
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-emerald-50 to-teal-50">
       <div className="container mx-auto px-4 py-12">
@@ -147,36 +153,60 @@ export default function BeginnerGuidePage() {
                 </div>
               </div>
             ) : (
-              <div className="h-[500px] overflow-auto p-6 space-y-4">
-                {messages.map((m, idx) => (
-                  <div key={idx} className={m.role === 'user' ? 'flex justify-end' : 'flex justify-start'}>
-                    {m.role === 'assistant' && (
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-green-500 flex items-center justify-center text-lg mr-2 flex-shrink-0 shadow-md">
+              <div className="flex flex-col h-[600px]">
+                {/* Chat Header with Back Button */}
+                <div className="px-6 py-4 border-b border-stone-100 bg-white/50 backdrop-blur-sm flex justify-between items-center z-10">
+                  <button
+                    onClick={() => setShowWelcome(true)}
+                    className="text-sm font-medium text-stone-500 hover:text-emerald-600 flex items-center gap-2 transition-colors px-3 py-1.5 rounded-lg hover:bg-emerald-50"
+                  >
+                    <span>←</span> Back to Topics
+                  </button>
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={clearHistory}
+                      className="text-xs font-medium text-stone-400 hover:text-rose-500 transition-colors px-2 py-1 rounded hover:bg-rose-50"
+                    >
+                      Clear History
+                    </button>
+                    <div className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">
+                      Chat with Sage 🦉
+                    </div>
+                  </div>
+                </div>
+
+                {/* Scrollable Chat Area */}
+                <div className="flex-1 overflow-auto p-6 space-y-4">
+                  {messages.map((m, idx) => (
+                    <div key={idx} className={m.role === 'user' ? 'flex justify-end' : 'flex justify-start'}>
+                      {m.role === 'assistant' && (
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-green-500 flex items-center justify-center text-lg mr-2 flex-shrink-0 shadow-md">
+                          🦉
+                        </div>
+                      )}
+                      <div
+                        className={[
+                          'max-w-[85%] rounded-3xl px-5 py-3.5 text-sm leading-relaxed whitespace-pre-wrap shadow-md',
+                          m.role === 'user'
+                            ? 'bg-gradient-to-br from-amber-100 to-yellow-100 text-stone-800 border-2 border-amber-200'
+                            : 'bg-gradient-to-br from-emerald-50 to-green-50 text-stone-800 border-2 border-emerald-200',
+                        ].join(' ')}
+                      >
+                        {m.text}
+                      </div>
+                    </div>
+                  ))}
+                  {loading && (
+                    <div className="flex justify-start">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-green-500 flex items-center justify-center text-lg mr-2 flex-shrink-0 shadow-md animate-pulse">
                         🦉
                       </div>
-                    )}
-                    <div
-                      className={[
-                        'max-w-[85%] rounded-3xl px-5 py-3.5 text-sm leading-relaxed whitespace-pre-wrap shadow-md',
-                        m.role === 'user'
-                          ? 'bg-gradient-to-br from-amber-100 to-yellow-100 text-stone-800 border-2 border-amber-200'
-                          : 'bg-gradient-to-br from-emerald-50 to-green-50 text-stone-800 border-2 border-emerald-200',
-                      ].join(' ')}
-                    >
-                      {m.text}
+                      <div className="bg-gradient-to-br from-emerald-50 to-green-50 border-2 border-emerald-200 rounded-3xl px-5 py-3.5 text-sm text-stone-600 shadow-md">
+                        Thinking...
+                      </div>
                     </div>
-                  </div>
-                ))}
-                {loading && (
-                  <div className="flex justify-start">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-green-500 flex items-center justify-center text-lg mr-2 flex-shrink-0 shadow-md animate-pulse">
-                      🦉
-                    </div>
-                    <div className="bg-gradient-to-br from-emerald-50 to-green-50 border-2 border-emerald-200 rounded-3xl px-5 py-3.5 text-sm text-stone-600 shadow-md">
-                      Thinking...
-                    </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             )}
 
@@ -235,6 +265,6 @@ export default function BeginnerGuidePage() {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
