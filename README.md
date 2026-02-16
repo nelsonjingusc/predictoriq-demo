@@ -5,32 +5,6 @@
 > This is a **full-stack demonstration** of a hybrid intelligence model:
 > - **PredictorIQ Core**: Deterministic quantitative engine (Pricing, Scoring).
 > - **ChainGPT Integration**: Server-side AI reasoning layer (Interpreting and communicating signals).
->
-> Reviewers can explore the UX via **Demo Mode**, which uses high-fidelity mock data to simulate real-time AI responses without requiring API credits.
-
-## ChainGPT Integration (This Branch)
-
-This branch integrates **ChainGPT** as a reasoning and communication layer on top of PredictorIQ’s existing, deterministic market analysis.
-
-- PredictorIQ’s core pricing/scoring/anomaly logic remains **code-based and deterministic**.
-- ChainGPT is used to **interpret structured signals** and produce plain-English explanations for users and agent workflows.
-- All ChainGPT calls are made **server-side** via Next.js API routes. The client never sees model credentials.
-
-### What’s Added
-
-- **Server-side ChainGPT integration** via API routes (no secrets exposed to the browser)
-- **Market explanation panel** that turns structured signals into short rationales
-- **In-app Q&A / research copilot** for follow-up questions grounded in the same structured context
-- **Help / onboarding chat** for metrics and system concepts using project-specific context
-- **Agent-facing text generation endpoints** (Daily Digest, Anomaly Alerts, Research Notes)
-
-### What This Branch Does NOT Do
-
-- No trading execution, no wallets, no private keys
-- No replacing deterministic calculations with model-generated math
-- No autonomous trading system
-
----
 
 ## ⚡ Quick Start (ChainGPT PoC)
 
@@ -60,6 +34,30 @@ With **demo mode enabled** (default), you'll see:
 - ✅ **Realistic mock data** showing Top1Rank recommendations, arbitrage opportunities, and profile analysis.
 - ✅ **Full interactivity** - browse, filter, and explore all features.
 - ✅ **Fast loading** - no backend required for evaluation.
+
+---
+
+## ChainGPT Integration (This Branch)
+
+This branch integrates **ChainGPT** as a reasoning and communication layer on top of PredictorIQ’s existing, deterministic market analysis.
+
+- PredictorIQ’s core pricing/scoring/anomaly logic remains **code-based and deterministic**.
+- ChainGPT is used to **interpret structured signals** and produce plain-English explanations for users and agent workflows.
+- All ChainGPT calls are made **server-side** via Next.js API routes. The client never sees model credentials.
+
+### What’s Added
+
+- **Server-side ChainGPT integration** via API routes (no secrets exposed to the browser)
+- **Market explanation panel** that turns structured signals into short rationales
+- **In-app Q&A / research copilot** for follow-up questions grounded in the same structured context
+- **Help / onboarding chat** for metrics and system concepts using project-specific context
+- **Agent-facing text generation endpoints** (Daily Digest, Anomaly Alerts, Research Notes)
+
+### What This Branch Does NOT Do
+
+- No trading execution, no wallets, no private keys
+- No replacing deterministic calculations with model-generated math
+- No autonomous trading system
 
 ---
 
