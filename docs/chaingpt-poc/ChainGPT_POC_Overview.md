@@ -40,7 +40,7 @@ Once the server is running, explore these core modules to see how ChainGPT enhan
 
 ## 🏗️ Technical Architecture
 
-PredictorIQ uses a **Dual-Layer Architecture** to separate quantitative execution from AI reasoning.
+PredictorIQ uses a **Layer-based Architecture** to separate quantitative execution from AI reasoning.
 
 ### System Flow
 ```mermaid
