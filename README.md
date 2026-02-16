@@ -3,8 +3,8 @@
 >**🧱 Full-Stack AI PoC - Hybrid Model**
 > 
 > This is a **full-stack demonstration** of a hybrid intelligence model:
-> - **PredictorIQ Core**: Deterministic quantitative engine (Pricing, Scoring).
-> - **ChainGPT Integration**: Server-side AI reasoning layer (Interpreting and communicating signals).
+> - **PredictorIQ Core**: Beginner Guide, Wallet Tracker, Top 10 Markets.
+- **ChainGPT Integration**: Server-side AI reasoning layer (Interpreting and communicating signals).
 
 ## ⚡ Quick Start (ChainGPT PoC)
 
