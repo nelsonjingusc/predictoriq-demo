@@ -33,8 +33,8 @@ Once the server is running, explore these core modules to see how ChainGPT enhan
 ### 2. Wallet Analysis (`/wallet-tracker`)
 *   **Deep profiling**: Search for a wallet like `@YetSun`. Observation: PredictorIQ audits 5,000+ trades to derive deterministic win rates, which ChainGPT then synthesizes into a readable trader profile.
 
-### 3. Cross-Platform Arbitrage (`/arbitrage`)
-*   **The Spread Radar**: See price discrepancies between Polymarket and Kalshi. Observation: The UI calculates the arbitrage spread instantly, demonstrating the intelligence layer's ability to map identical events across protocols.
+### 3. Beginner's Guide (`/guide`)
+*   **Interactive Learning**: Sage, the AI assistant, guides newcomers through the fundamentals of prediction markets. Observation: Users can choose from curated learning topics or ask free-form questions to receive Web3-aware educational support powered by ChainGPT.
 
 ---
 
