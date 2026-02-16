@@ -16,7 +16,7 @@ If you are a reviewer and want to see the product in action immediately, follow 
 ```
 
 **What this script does:**
-1.  **Environment**: Creates `.env.local` with "Demo Mode" enabled.
+1.  **Environment**: Creates `.env.local` with "Demo Mode" disabled by default (to prioritize real AI).
 2.  **Dependencies**: Installs all required packages.
 3.  **Launch**: Starts the local server at [http://localhost:3000](http://localhost:3000).
 
@@ -113,7 +113,7 @@ graph TD
 ## 🔦 Troubleshooting & FAQ
 
 **Q: Page shows "Connection Error" or No Data?**
-*   Ensure `NEXT_PUBLIC_DEMO_MODE=true` is in your `client/.env.local`. The `./start-demo.sh` script does this automatically.
+*   Ensure `NEXT_PUBLIC_DEMO_MODE=false` is in your `client/.env.local` if you want real AI, or `true` for offline testing.
 
 **Q: The AI response is slow?**
 *   In Demo Mode, we simulate a 1-2 second "Thinking..." delay to match the live product experience.

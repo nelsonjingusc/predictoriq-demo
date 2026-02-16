@@ -22,7 +22,7 @@ echo ""
 if [ ! -f ".env.local" ]; then
   echo "Creating .env.local with demo mode enabled..."
   cat > .env.local <<'EOF'
-NEXT_PUBLIC_DEMO_MODE=1
+NEXT_PUBLIC_DEMO_MODE=false
 # CHAINGPT_API_KEY=your_api_key_here
 # CHAINGPT_BASE_URL=https://api.chaingpt.org
 EOF

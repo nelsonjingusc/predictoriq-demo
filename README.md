@@ -29,11 +29,11 @@ cd client && npm install && npm run dev
 
 ### ✅ What You'll See
 
-With **demo mode enabled** (default), you'll see:
+With **demo mode disabled** (default), you'll see:
 - ✅ **Complete UI** with all pages and navigation working.
-- ✅ **Realistic mock data** showing Top1Rank recommendations, arbitrage opportunities, and profile analysis.
+- ✅ **Live AI Insights** for top markets (requires `CHAINGPT_API_KEY`).
 - ✅ **Full interactivity** - browse, filter, and explore all features.
-- ✅ **Fast loading** - no backend required for evaluation.
+- ✅ **Real-time analysis** - grounded in institutional data.
 
 ---
 

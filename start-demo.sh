@@ -18,7 +18,7 @@ cd client
 # Check and initialize .env.local if needed
 if [ ! -f .env.local ]; then
     echo "📝 Initializing environment configuration..."
-    echo "NEXT_PUBLIC_DEMO_MODE=true" > .env.local
+    echo "NEXT_PUBLIC_DEMO_MODE=false" > .env.local
     echo "✅ Demo mode configuration initialized"
 else
     echo "✅ Environment configuration found"
