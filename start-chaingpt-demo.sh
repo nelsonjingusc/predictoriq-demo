@@ -20,7 +20,7 @@ echo ""
 
 # Step 1: Create .env.local if it doesn't exist
 if [ ! -f ".env.local" ]; then
-  echo "Creating .env.local with demo mode enabled..."
+  echo "Creating .env.local with demo mode disabled..."
   cat > .env.local <<'EOF'
 NEXT_PUBLIC_DEMO_MODE=false
 # CHAINGPT_API_KEY=your_api_key_here
@@ -49,7 +49,7 @@ echo "========================================="
 echo "PoC is running at: http://localhost:3000"
 echo "========================================="
 echo ""
-echo "Demo mode: ENABLED (uses canned responses)"
+echo "Demo mode: DISABLED (prioritizes live AI)"
 echo ""
 echo "To enable live ChainGPT calls:"
 echo "  1. Get API key from https://app.chaingpt.org/apidashboard"

@@ -14,7 +14,7 @@ This is a **full-stack demonstration** of a hybrid intelligence model:
 ```
 
 **This script will:**
-1. **Environment**: Create `.env.local` with demo mode enabled (if it doesn't already exist—existing keys are **preserved**).
+1. **Environment**: Create `.env.local` with demo mode disabled (if it doesn't already exist—existing keys are **preserved**).
 2. **Dependencies**: Install required packages if `node_modules` is missing.
 3. **Launch**: Start the dev server at [http://localhost:3000](http://localhost:3000).
 
