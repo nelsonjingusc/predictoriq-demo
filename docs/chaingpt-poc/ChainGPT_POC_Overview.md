@@ -12,7 +12,7 @@ If you are a reviewer and want to see the product in action immediately, follow 
 
 ```bash
 # RECOMMENDED: One-click setup and start
-./start-demo.sh
+./start-chaingpt-demo.sh
 ```
 
 **What this script does:**
@@ -113,7 +113,7 @@ graph TD
 ## 🔦 Troubleshooting & FAQ
 
 **Q: Page shows "Connection Error" or No Data?**
-*   Ensure `NEXT_PUBLIC_DEMO_MODE=false` is in your `client/.env.local` if you want real AI, or `true` for offline testing.
+*   Ensure `NEXT_PUBLIC_DEMO_MODE=false` is in your `client/.env.local` if you want real AI, or `true` for offline testing. The `./start-chaingpt-demo.sh` script does this automatically.
 
 **Q: The AI response is slow?**
 *   In Demo Mode, we simulate a 1-2 second "Thinking..." delay to match the live product experience.
