@@ -97,19 +97,6 @@ graph TD
 
 ---
 
-## 🛠️ Feature Matrix (UC1 - UC6)
-
-| Feature | Endpoint | Description |
-| :--- | :--- | :--- |
-| **Market Explanation** | `explain-market` | Short summary of why a market looks cheap or expensive |
-| **Research Q&A** | `research-copilot` | User asks follow-up questions about a market |
-| **Daily Digest** | `generate-digest` | Generates tweet text for daily market highlights |
-| **Anomaly Alert** | `generate-anomaly-tweet` | Generates alert tweet when unusual activity is detected |
-| **Product Help** | `help` | Explains PredictorIQ metrics and concepts |
-| **Research Note** | `generate-daily-note` | Generates Markdown summary of top markets |
-
----
-
 ## 🔦 Troubleshooting & FAQ
 
 **Q: Page shows "Connection Error" or No Data?**
