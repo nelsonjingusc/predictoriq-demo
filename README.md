@@ -1,9 +1,9 @@
 # PredictorIQ × ChainGPT PoC 🦉
 
->**🧱 Full-Stack AI PoC - Hybrid Model**
-> 
-> This is a **full-stack demonstration** of a hybrid intelligence model:
-> - **PredictorIQ Core**: Beginner Guide, Wallet Tracker, Top 10 Markets.
+**🧱 Full-Stack AI PoC - Hybrid Model**
+ 
+This is a **full-stack demonstration** of a hybrid intelligence model:
+- **PredictorIQ Core**: Beginner Guide, Wallet Tracker, Top 10 Markets.
 - **ChainGPT Integration**: Server-side AI reasoning layer (Interpreting and communicating signals).
 
 ## ⚡ Quick Start (ChainGPT PoC)
