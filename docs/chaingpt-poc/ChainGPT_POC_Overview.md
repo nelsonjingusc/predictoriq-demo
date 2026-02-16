@@ -116,7 +116,7 @@ graph TD
 *   Ensure `NEXT_PUBLIC_DEMO_MODE=false` is in your `client/.env.local` if you want real AI, or `true` for offline testing. The `./start-chaingpt-demo.sh` script does this automatically.
 
 **Q: The AI response is slow?**
-*   In Demo Mode, we simulate a 1-2 second "Thinking..." delay to match the live product experience.
+*   We are aware that responses can sometimes be delayed. Our team is currently investigating the root cause and working on latency optimizations to improve the real-time experience. (In Demo Mode, we still simulate a brief "Thinking..." delay for consistency).
 
 **Q: How do I enable LIVE ChainGPT responses?**
 *   Add your `CHAINGPT_API_KEY` to `client/.env.local` and restart the server.
