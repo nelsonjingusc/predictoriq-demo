@@ -1,10 +1,12 @@
-# PredictorIQ Demo
+# PredictorIQ × ChainGPT PoC 🦉
 
->**⚠️ Frontend Demonstration - Mock Data Enabled**
+>**🧱 Full-Stack AI PoC - Hybrid Model**
 > 
-> This is a **frontend UI showcase** with realistic sample data enabled by default. You can explore the complete product interface without needing a backend server.
-
-This repository contains the public demo dashboard and docs for **PredictorIQ**, a prediction market intelligence and agent infrastructure project.
+> This is a **full-stack demonstration** of a hybrid intelligence model:
+> - **PredictorIQ Core**: Deterministic quantitative engine (Pricing, Scoring).
+> - **ChainGPT Integration**: Server-side AI reasoning layer (Interpreting and communicating signals).
+>
+> Reviewers can explore the UX via **Demo Mode**, which uses high-fidelity mock data to simulate real-time AI responses without requiring API credits.
 
 ## ChainGPT Integration (This Branch)
 
@@ -20,7 +22,7 @@ This branch integrates **ChainGPT** as a reasoning and communication layer on to
 - **Market explanation panel** that turns structured signals into short rationales
 - **In-app Q&A / research copilot** for follow-up questions grounded in the same structured context
 - **Help / onboarding chat** for metrics and system concepts using project-specific context
-- **Agent-facing text generation endpoints** (daily digest text, anomaly alert text, daily research note)
+- **Agent-facing text generation endpoints** (Daily Digest, Anomaly Alerts, Research Notes)
 
 ### What This Branch Does NOT Do
 
@@ -28,29 +30,19 @@ This branch integrates **ChainGPT** as a reasoning and communication layer on to
 - No replacing deterministic calculations with model-generated math
 - No autonomous trading system
 
-### Next Planned Work
+---
 
-- Cleaner structured inputs and prompt guardrails (validation, error handling, rate limits, caching)
-- Optional wiring to ChainGPT AgenticOS for external posting workflows (execution remains external and optional)
-
-## What's in This Repo
-
-- **Frontend UI** (`client/`): Complete Next.js dashboard showcasing the product interface
-- **TypeScript SDK** (`client/packages/sdk/`): Client library for API integration
-- **Documentation** (`docs/`): Product overview, architecture, and demo guide
-- **Mock Data**: Realistic sample data for all features
-
-## Quick Start (ChainGPT PoC)
+## ⚡ Quick Start (ChainGPT PoC)
 
 ```bash
 # One-click start for ChainGPT PoC (recommended)
 ./start-chaingpt-demo.sh
 ```
 
-This will:
-- Create `.env.local` with demo mode enabled
-- Install dependencies if needed
-- Start the dev server at `http://localhost:3000`
+**This script will:**
+1. **Environment**: Create `.env.local` with demo mode enabled (if it doesn't already exist—existing keys are **preserved**).
+2. **Dependencies**: Install required packages if `node_modules` is missing.
+3. **Launch**: Start the dev server at [http://localhost:3000](http://localhost:3000).
 
 **Pages to visit:**
 - `/top10` — Market explanation + copilot
@@ -64,100 +56,47 @@ cd client && npm install && npm run dev
 ### ✅ What You'll See
 
 With **demo mode enabled** (default), you'll see:
-- ✅ **Complete UI** with all pages and navigation working
-- ✅ **Realistic mock data** showing Top10 recommendations, arbitrage opportunities, and option pricing analysis
-- ✅ **Full interactivity** - browse, filter, and explore all features
-- ✅ **Fast loading** - no backend required
+- ✅ **Complete UI** with all pages and navigation working.
+- ✅ **Realistic mock data** showing Top1Rank recommendations, arbitrage opportunities, and profile analysis.
+- ✅ **Full interactivity** - browse, filter, and explore all features.
+- ✅ **Fast loading** - no backend required for evaluation.
 
-### Demo Mode
+---
 
-**Demo mode is enabled by default.** The app uses realistic sample data to showcase the product interface.
+## 📚 Documentation
 
-To switch to live mode (requires backend API):
-```bash
-# In client/.env.local
-NEXT_PUBLIC_DEMO_MODE=false
-NEXT_PUBLIC_API_URL=http://localhost:8000  # Your API URL
-```
-
-## Documentation
-
-**Getting Started:**
-- **[Quick Start](docs/QUICK_START.md)**: 5-minute guide to get the demo running
-
-**Detailed Documentation:**
-**Detailed Documentation:**
-- **[Product Overview (High Level)](docs/PRODUCT_OVERVIEW.md)**: **← Start here for the long-term vision**
-- **[Architecture Overview](docs/ARCHITECTURE_OVERVIEW.md)**: Deep dive into the Dual-Layer System (Communication vs. Execution)
-
-**ChainGPT POC Specifics:**
-- **[POC Overview & Guide](docs/chaingpt-poc/ChainGPT_POC_Overview.md)**: **← Start here for features, architecture, and running instructions**
-- **[Integration Status](docs/predictoriq-roadmap/chaingpt-integration-v1-current-status-and-work-plan.md)**: Roadmap history
+**PoC Guide & Vision:**
+- **[POC Overview & Guide](docs/chaingpt-poc/ChainGPT_POC_Overview.md)**: **← Start here for features, architecture, and running instructions.**
+- **[Architecture Overview](docs/predictoriq-roadmap/ARCHITECTURE_OVERVIEW.md)**: Deep dive into the Dual-Layer System (Communication vs. Execution).
+- **[Integration History](docs/predictoriq-roadmap/chaingpt-integration-v1-current-status-and-work-plan.md)**: Roadmap history.
 
 **Future Roadmap:**
-- **[Original Product Vision](docs/predictoriq-roadmap/PRODUCT_OVERVIEW.md)**: Original high-level product documentation
-- **[Architecture Overview](docs/predictoriq-roadmap/ARCHITECTURE_OVERVIEW.md)**: Deep dive into the Dual-Layer System
+- **[Long-term Product Vision](docs/predictoriq-roadmap/PRODUCT_OVERVIEW.md)**: The original high-level product documentation.
+
+---
 
 ## Project Structure
 
 ```
 predictoriq-demo/
 ├── client/                 # Next.js frontend application
-│   ├── app/               # Next.js app router pages
+│   ├── app/               # Next.js app router pages & API routes
+│   │   ├── api/chaingpt/  # AI integration endpoints
 │   │   ├── top10/         # Top10 recommendations page
-│   │   ├── arbitrage/     # Arbitrage scanner
-│   │   ├── strategies/    # Trading strategies
-│   │   ├── ideas/         # Market creation ideas
-│   │   ├── agents/        # AI agents feed
+│   │   ├── wallet-tracker/# Smart money profiling
 │   │   ├── chaingpt/      # ChainGPT preview page
 │   │   └── ...
 │   ├── packages/sdk/      # TypeScript SDK
-│   └── components/        # React components
-└── docs/                  # Documentation
+│   └── components/        # React components (consolidated under chaingpt/)
+└── docs/                  # Documentation (POC vs. Roadmap)
 ```
 
-## POC Implementation
-
-This demo showcases:
-
-1. **Frontend Architecture**: Modern Next.js 14 app with TypeScript
-2. **UI/UX Design**: Complete dashboard with all planned features
-3. **SDK Design**: TypeScript SDK showing API integration patterns
-4. **Component Structure**: Reusable React components
-
-**What's NOT included** (in private repo):
-- Backend API server
-- Data ingestion from Kalshi/Polymarket  
-- Option pricing engine
-- Arbitrage scanner
-- Real-time data processing
-
-**Note**: In demo mode, the frontend uses realistic mock data instead of live API calls.
-
-## For Reviewers
+## Reviewer Notes
 
 This repository demonstrates:
-- ✅ Product vision and UI/UX design
-- ✅ Frontend architecture and code quality
-- ✅ SDK design and API patterns
-- ✅ Technical documentation
-- ✅ **Complete UI with realistic sample data (demo mode)**
+- ✅ **Product Vision**: Professional UI/UX design with institutional-grade aesthetics.
+- ✅ **Technical Architecture**: Clean separation between quantitative execution and AI reasoning.
+- ✅ **Code Quality**: Modern Next.js patterns, TypeScript-first development, and secure API integration.
+- ✅ **Scalability**: Agent-facing endpoints ready for autonomous workflow integration.
 
-**Getting Started**: Simply run `./start-demo.sh` in the root directory. The app will automatically handle environment setup, dependency installation, and start the server with mock data enabled.
-
-To understand the full system (including backend), see the architecture docs or contact the team for access to the private repository.
-
-### 📧 Form Email Notifications
-
-To receive actual emails when someone joins the waitlist:
-1. Create a free account at [Formspree](https://formspree.io/).
-2. Create a new form and get your **Form ID** (e.g., `xbjebpoy`).
-3. Add it to `client/.env.local`:
-   ```bash
-   NEXT_PUBLIC_FORMSPREE_ID=your_id_here
-   ```
-4. Restart the dev server.
-
----
-
-**For detailed demo instructions, see [docs/DEMO_GUIDE.md](docs/DEMO_GUIDE.md)**
+**Contact**: [nelson.jingusc@gmail.com](mailto:nelson.jingusc@gmail.com)
