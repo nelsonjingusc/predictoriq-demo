@@ -86,12 +86,17 @@ NEXT_PUBLIC_API_URL=http://localhost:8000  # Your API URL
 - **[Quick Start](docs/QUICK_START.md)**: 5-minute guide to get the demo running
 
 **Detailed Documentation:**
-- **[ChainGPT PoC Overview](docs/CHAIN_GPT_POC_OVERVIEW.md)**: **← Start here for PoC walkthrough**
-- **[Demo Guide](docs/DEMO_GUIDE.md)**: Step-by-step walkthrough of the UI
-- **[Product Overview](docs/PRODUCT_OVERVIEW.md)**: High-level product vision and features
-- **[Architecture Overview](docs/ARCHITECTURE_OVERVIEW.md)**: System design and technical architecture
-- **[ChainGPT Integration Overview](docs/CHAINGPT_INTEGRATION_OVERVIEW.md)**: One-page technical integration overview
-- **[ChainGPT Integration Status + Plan](docs/chaingpt-integration-v1-current-status-and-work-plan.md)**: Requirements, current status, and next steps
+**Detailed Documentation:**
+- **[Product Overview (High Level)](docs/PRODUCT_OVERVIEW.md)**: **← Start here for the long-term vision**
+- **[Architecture Overview](docs/ARCHITECTURE_OVERVIEW.md)**: Deep dive into the Dual-Layer System (Communication vs. Execution)
+
+**ChainGPT POC Specifics:**
+- **[POC Overview & Guide](docs/chaingpt-poc/ChainGPT_POC_Overview.md)**: **← Start here for features, architecture, and running instructions**
+- **[Integration Status](docs/predictoriq-roadmap/chaingpt-integration-v1-current-status-and-work-plan.md)**: Roadmap history
+
+**Future Roadmap:**
+- **[Original Product Vision](docs/predictoriq-roadmap/PRODUCT_OVERVIEW.md)**: Original high-level product documentation
+- **[Architecture Overview](docs/predictoriq-roadmap/ARCHITECTURE_OVERVIEW.md)**: Deep dive into the Dual-Layer System
 
 ## Project Structure
 
